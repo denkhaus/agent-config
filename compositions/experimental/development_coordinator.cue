@@ -1,10 +1,10 @@
-package examples
+package experimental
 
 import (
-    "github.com/denkhaus/agent-config/schema"
-    "github.com/denkhaus/agent-config/prompts/v1.0"
-    "github.com/denkhaus/agent-config/tools/profiles"
-    "github.com/denkhaus/agent-config/settings/default"
+	"github.com/denkhaus/agent-config/schema"
+	v1_0 "github.com/denkhaus/agent-config/prompts/v1_0"
+	profiles "github.com/denkhaus/agent-config/tools/profiles"
+	"github.com/denkhaus/agent-config/settings/default"
 )
 
 // Example of a chain agent that coordinates multiple sub-agents
@@ -14,14 +14,14 @@ development_coordinator: schema.#Agent & {
     description: "A chain agent that coordinates the development process by executing sub-agents in sequence"
     version: "v1.0.0"
     type: "chain"  // This is a chain agent
-    
+
     prompt: {
-        source: "prompts_v1_0.project_manager"
+        source: v1_0.project_manager
         version: "v1.0.0"
     }
-    
+
     settings: {
-        source: "settings_default.project_manager"
+        source: default.project_manager
         version: "v1.0.0"
         overrides: {
             agent: {
@@ -34,9 +34,9 @@ development_coordinator: schema.#Agent & {
             }
         }
     }
-    
+
     tools: {
-        source: "tools_profiles.project_manager"
+        source: profiles.project_manager
         version: "v1.0.0"
     }
 }

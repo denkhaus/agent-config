@@ -4,10 +4,10 @@ import "strings"
 
 #Settings: {
     // Core identification
-    agent_id: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    agent_id: #UUID
     name: string & strings.MinRunes(1) & strings.MaxRunes(100)
     description?: string & strings.MaxRunes(500)
-    
+
     // Agent settings
     agent: #AgentSettings
 }
@@ -20,12 +20,12 @@ import "strings"
     timeout?: int & >0 & <=3600 | *300
     streaming_enabled?: bool | *false
     channel_buffer_size?: int & >=0 & <=1000 | *0
-    
+
     // LLM settings
     llm?: #LLMSettings
-    
+
     // Fields specific to different agent types
-    sub_agents?: [...string]  // UUIDs of sub-agents
+    sub_agents?: [...#UUID]  // UUIDs of sub-agents
     input_schema?: {...}
     output_schema?: {...}
     output_key?: string
@@ -43,4 +43,3 @@ import "strings"
     api_key?: string
     channel_buffer_size?: int & >=0 & <=1000 | *0
 }
-

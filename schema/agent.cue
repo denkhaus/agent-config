@@ -4,49 +4,39 @@ import "strings"
 
 #Agent: {
     // Core identification
-    agent_id: string & =~"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    agent_id: #UUID
     name: string & strings.MinRunes(1) & strings.MaxRunes(100)
     description?: string & strings.MaxRunes(500)
-    version: string & =~"^v[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?$"
-    
+    version: #Version
+
     // Agent type
     type: "default" | "chain" | "cycle" | "parallel" | *"default"
-    
+
     // Component references
     prompt: #PromptRef
     settings: #SettingsRef
     tools: #ToolsRef
-    
 }
 
 #PromptRef: {
-    source: string
-    version: string
+    source: #Prompt
+    version: #Version
     overrides?: {...}
 }
 
 #SettingsRef: {
-    source: string
-    version: string
+    source: #Settings
+    version: #Version
     overrides?: {...}
 }
 
 #ToolsRef: {
-    source: string
-    version: string
+    source: #ToolProfile
+    version: #Version
     overrides?: {
         tools?: {[string]: #ToolConfig}
         toolsets?: {[string]: #ToolSetConfig}
     }
 }
 
-#ToolConfig: {
-    enabled: bool
-    config?: {...}
-}
-
-#ToolSetConfig: {
-    enabled: bool
-    config?: {...}
-}
 

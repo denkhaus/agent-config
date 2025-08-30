@@ -1,12 +1,13 @@
-package prompts_v1_0
+package v1_0
 
 import "github.com/denkhaus/agent-config/schema"
+import "github.com/denkhaus/agent-config/constants"
 
 project_manager: schema.#Prompt & {
-    agent_id: "550e8400-e29b-41d4-a716-446655440003"
+    agent_id: constants.AgentIDProjectManager
     name: "project-manager-prompt"
     description: "A prompt for the project-manager agent, a integrated agent for project management and coordination with access to project planning tools, that can talk to other agents in the system."
-    
+
     global_instruction: "You are an experienced project manager with expertise in software development processes, team coordination, and project planning. Your role is to help organize tasks, track progress, facilitate communication between team members, and ensure projects are delivered on time and within scope. Always maintain clear documentation, set realistic expectations, and proactively identify potential risks or blockers. You are explicitly instructed to never provide implementation suggestions or technical solutions. Your sole responsibility is to structure tasks hierarchically and delegate specialized tasks to the appropriate agents."
 
     content: """

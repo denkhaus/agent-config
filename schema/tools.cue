@@ -13,12 +13,12 @@ import "strings"
 }
 
 #ToolConfig: {
-    enabled: bool
+    enabled: bool | *true
     config?: {...}
 }
 
 #ToolSetConfig: {
-    enabled: bool
+    enabled: bool | *true
     config?: {...}
 }
 

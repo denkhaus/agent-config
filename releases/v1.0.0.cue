@@ -1,10 +1,7 @@
 package releases
 
 import (
-    "github.com/denkhaus/agent-config/compositions/stable"
-    "github.com/denkhaus/agent-config/prompts/v1.0"
-    "github.com/denkhaus/agent-config/tools/profiles"
-    "github.com/denkhaus/agent-config/settings/default"
+	"github.com/denkhaus/agent-config/compositions/stable"
 )
 
 v1_0_0: {

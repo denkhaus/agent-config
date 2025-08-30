@@ -1,17 +1,17 @@
-package tools_profiles
+package profiles
 
 import "github.com/denkhaus/agent-config/schema"
 
 researcher: schema.#ToolProfile & {
     name: "researcher-basic"
     description: "Research and information gathering tools"
-    
+
     tools: {
         calculator: {
             enabled: true
             config: {}
         }
-        
+
         fetch: {
             enabled: true
             config: {
@@ -21,18 +21,18 @@ researcher: schema.#ToolProfile & {
                 }
             }
         }
-        
+
         current_time: {
             enabled: true
             config: {}
         }
-        
+
         duckduckgo: {
             enabled: true
             config: {}
         }
     }
-    
+
     toolsets: {
         tavily: {
             enabled: true
@@ -43,7 +43,7 @@ researcher: schema.#ToolProfile & {
                 include_answer: true
             }
         }
-        
+
         file: {
             enabled: true
             config: {
@@ -52,16 +52,16 @@ researcher: schema.#ToolProfile & {
                 max_file_size: 5242880  // 5MB
             }
         }
-        
+
         shell: {
             enabled: false
             config: {}
         }
-        
+
         project: {
             enabled: false
             config: {}
         }
     }
-    
+
 }

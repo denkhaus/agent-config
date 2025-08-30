@@ -1,10 +1,10 @@
-package examples
+package experimental
 
 import (
-    "github.com/denkhaus/agent-config/schema"
-    "github.com/denkhaus/agent-config/prompts/v1.0"
-    "github.com/denkhaus/agent-config/tools/profiles"
-    "github.com/denkhaus/agent-config/settings/default"
+	"github.com/denkhaus/agent-config/schema"
+	prompts_v1_0 "github.com/denkhaus/agent-config/prompts/v1_0"
+	"github.com/denkhaus/agent-config/tools/profiles"
+	"github.com/denkhaus/agent-config/settings/default"
 )
 
 // Example of a cycle agent that iterates between research and coding
@@ -14,14 +14,14 @@ research_development_cycle: schema.#Agent & {
     description: "A cycle agent that iterates between research and development until a solution is found"
     version: "v1.0.0"
     type: "cycle"  // This is a cycle agent
-    
+
     prompt: {
-        source: "prompts_v1_0.project_manager"
+        source: prompts_v1_0.project_manager
         version: "v1.0.0"
     }
-    
+
     settings: {
-        source: "settings_default.project_manager"
+        source: default.project_manager
         version: "v1.0.0"
         overrides: {
             agent: {
@@ -35,9 +35,9 @@ research_development_cycle: schema.#Agent & {
             }
         }
     }
-    
+
     tools: {
-        source: "tools_profiles.project_manager"
+        source: profiles.project_manager
         version: "v1.0.0"
     }
 }
