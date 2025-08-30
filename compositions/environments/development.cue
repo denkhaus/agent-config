@@ -6,7 +6,7 @@ development: {
     environment: "development"
     version: "v1.0.0"
     description: "Development environment configuration with enhanced debugging"
-    
+
     agents: {
         coder: stable.coder & {
             tools: overrides: toolsets: {
@@ -19,13 +19,13 @@ development: {
                 }
             }
         }
-        
+
         project_manager: stable.project_manager
-        
+
         researcher: stable.researcher & {
             tools: overrides: toolsets: {
                 tavily: config: {
-                    api_key: "env:DEV_TAVILY_KEY:dev-fallback-key"
+                    api_key: "env:TAVILY_API_KEY:dev-fallback-key"
                     max_results: 5  // Reduced for dev
                 }
                 shell: {

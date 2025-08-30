@@ -9,6 +9,9 @@ import "strings"
     description?: string & strings.MaxRunes(500)
     version: string & =~"^v[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?$"
     
+    // Agent type
+    type: "default" | "chain" | "cycle" | "parallel" | *"default"
+    
     // Component references
     prompt: #PromptRef
     settings: #SettingsRef

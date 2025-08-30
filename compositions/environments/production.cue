@@ -6,7 +6,7 @@ production: {
     environment: "production"
     version: "v1.0.0"
     description: "Production environment configuration"
-    
+
     agents: {
         coder: stable.coder & {
             tools: overrides: toolsets: {
@@ -16,13 +16,13 @@ production: {
                 }
             }
         }
-        
+
         project_manager: stable.project_manager
-        
+
         researcher: stable.researcher & {
             tools: overrides: toolsets: {
                 tavily: config: {
-                    api_key: "env:PROD_TAVILY_KEY"
+                    api_key: "env:TAVILY_API_KEY"
                     rate_limit: 100
                     max_results: 10
                 }
