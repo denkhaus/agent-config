@@ -1,9 +1,9 @@
-package default
+package settings
 
 import "github.com/denkhaus/agent-config/schema"
 import "github.com/denkhaus/agent-config/constants"
 
-researcher: schema.#Settings & {
+researcher: schema.#SettingsConfig & {
     agent_id: constants.AgentIDResearcher
     name: "researcher-default"
     description: "Default settings for researcher agent"

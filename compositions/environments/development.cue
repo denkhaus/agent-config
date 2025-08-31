@@ -9,7 +9,7 @@ development: {
 
     agents: {
         coder: stable.coder & {
-            tools: overrides: toolsets: {
+            tool: overrides: toolsets: {
                 shell: {
                     enabled: true
                     config: {
@@ -26,7 +26,7 @@ development: {
         project_manager: stable.project_manager
 
         researcher: stable.researcher & {
-            tools: overrides: toolsets: {
+            tool: overrides: toolsets: {
                 tavily: {
                     enabled: true
                     config: {

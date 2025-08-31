@@ -2,13 +2,13 @@ package experimental
 
 import (
 	"github.com/denkhaus/agent-config/schema"
-	prompts_v1_0 "github.com/denkhaus/agent-config/prompts/v1_0"
-	"github.com/denkhaus/agent-config/tools/profiles"
-	"github.com/denkhaus/agent-config/settings/default"
+	"github.com/denkhaus/agent-config/prompts"
+	"github.com/denkhaus/agent-config/tools"
+	settingsPkg "github.com/denkhaus/agent-config/settings"
 )
 
 // Example of a parallel agent that executes research and coding simultaneously
-parallel_research_development: schema.#Agent & {
+parallel_research_development: schema.#AgentConfig & {
     agent_id: "550e8400-e29b-41d4-a716-446655440007"
     name: "parallel-research-development"
     description: "A parallel agent that executes research and development tasks simultaneously"
@@ -16,12 +16,12 @@ parallel_research_development: schema.#Agent & {
     type: "parallel"  // This is a parallel agent
 
     prompt: {
-        source: prompts_v1_0.project_manager
+        source: prompts.project_manager
         version: "v1.0.0"
     }
 
-    settings: {
-        source: default.project_manager
+    setting: {
+        source: settingsPkg.project_manager
         version: "v1.0.0"
         overrides: {
             agent: {
@@ -34,8 +34,8 @@ parallel_research_development: schema.#Agent & {
         }
     }
 
-    tools: {
-        source: profiles.project_manager
+    tool: {
+        source: tools.project_manager
         version: "v1.0.0"
     }
 }

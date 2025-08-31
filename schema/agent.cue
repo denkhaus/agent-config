@@ -5,7 +5,7 @@ import (
 )
 
 // Agent composition schema (different from runtime AgentConfig)
-#Agent: {
+#AgentConfig: {
     // Core identification
     agent_id: #UUID
     name: string
@@ -17,14 +17,16 @@ import (
 
     // Component references
     prompt: #PromptRef
-    settings: #SettingsRef
-    tools: #ToolsRef
+    setting: #SettingsRef
+    tool: #ToolsRef
 }
 
-// Use the types from pkg/provider/config
+
 #PromptConfig: providerConfig.#PromptConfig
 #SettingsConfig: providerConfig.#SettingsConfig
 #ToolsConfig: providerConfig.#ToolsConfig
+#AgentSettings: providerConfig.#AgentSettings
+#LLMSettings: providerConfig.#LLMSettings
 
 // Legacy reference types for backward compatibility
 #PromptRef: {
@@ -47,5 +49,3 @@ import (
         toolsets?: {[string]: providerConfig.#ToolSetConfig}
     }
 }
-
-

@@ -1,9 +1,9 @@
-package v1_0
+package prompts
 
 import "github.com/denkhaus/agent-config/schema"
 import "github.com/denkhaus/agent-config/constants"
 
-project_manager: schema.#Prompt & {
+project_manager: schema.#PromptConfig & {
     agent_id: constants.AgentIDProjectManager
     name: "project-manager-prompt"
     description: "A prompt for the project-manager agent, a integrated agent for project management and coordination with access to project planning tools, that can talk to other agents in the system."

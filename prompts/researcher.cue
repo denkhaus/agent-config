@@ -1,9 +1,9 @@
-package v1_0
+package prompts
 
 import "github.com/denkhaus/agent-config/schema"
 import "github.com/denkhaus/agent-config/constants"
 
-researcher: schema.#Prompt & {
+researcher: schema.#PromptConfig & {
     agent_id: constants.AgentIDResearcher
     name: "researcher-prompt"
     description: "A prompt for the researcher integrated agent, specialized in gathering and analyzing information, that has access to tools and can talk to other agents in the system"

@@ -9,18 +9,19 @@ This repository contains CUE-based configurations for AI agents, providing a typ
 │   ├── agent.cue          # Agent composition schema
 │   ├── prompt.cue         # Prompt schema with validation
 │   ├── tools.cue          # Tool profile schema
-│   └── settings.cue       # Agent settings schema
-├── prompts/               # Versioned prompt definitions
-│   └── v1.0/             # Version 1.0 prompts
+│   ── settings.cue        # Agent settings schema
+│   └── uuid.cue           # UUID schema
+├── prompts/               # Prompt definitions (Git-versioned)
 ├── tools/                 # Tool configurations
 │   └── profiles/         # Tool profiles for different agent types
-├── settings/              # Agent settings
-│   └── default/          # Default settings
+├── settings/              # Agent settings (Git-versioned)
+├── constants/             # Constant definitions
 ├── compositions/          # Agent compositions
 │   ├── stable/           # Stable agent compositions
+│   ├── experimental/     # Experimental agent compositions
 │   └── environments/     # Environment-specific overrides
 └── releases/             # Versioned releases
-    └── v1.0.0.cue       # Release v1.0.0
+    └── v1.0.0.cue        # Release v1.0.0
 ```
 
 ## Available Agents (v1.0.0)
@@ -47,11 +48,11 @@ This repository contains CUE-based configurations for AI agents, providing a typ
 
 ### Validate Configurations
 ```bash
-# Validate all configurations
-cue vet ./...
+# Validate all configurations using Mage
+mage cueVersion:validate
 
-# Validate specific component
-cue vet ./prompts/v1.0/... ./schema/prompt.cue
+# Or directly with CUE
+cue vet ./...
 ```
 
 ### Export Agent Configuration
@@ -76,18 +77,17 @@ cue export ./compositions/environments/production.cue -t prod_tavily_key=$PROD_T
 
 ## Versioning
 
-This repository uses semantic versioning with Git tags:
+This repository now uses Git-based versioning instead of directory-based versioning. See [VERSIONING.md](VERSIONING.md) for details.
 
-- **v1.0.0**: Initial stable release
+- **v1.0.0**: Initial stable release with Git-based versioning
 - **v1.x.x**: Backward-compatible updates
 - **v2.x.x**: Breaking changes
 
 ### Release Process
 1. Create configurations in feature branches
-2. Validate with `cue vet`
+2. Validate with `mage cueVersion:validate`
 3. Test in development environment
-4. Create release in `releases/vX.Y.Z.cue`
-5. Tag with `git tag vX.Y.Z`
+4. Create release with `mage cueVersion:tag vX.Y.Z`
 
 ## Schema Validation
 
@@ -102,7 +102,7 @@ All configurations are validated against CUE schemas:
 
 1. Fork the repository
 2. Create a feature branch
-3. Make changes and validate with `cue vet`
+3. Make changes and validate with `mage cueVersion:validate`
 4. Test in development environment
 5. Submit pull request
 

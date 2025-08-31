@@ -1,9 +1,9 @@
-package v1_0
+package prompts
 
 import "github.com/denkhaus/agent-config/schema"
 import "github.com/denkhaus/agent-config/constants"
 
-coder: schema.#Prompt & {
+coder: schema.#PromptConfig & {
     agent_id: constants.AgentIDCoder
     name: "coder-prompt"
     description: "A prompt for the coder integrated agent, specialized in golang coding, that has access to tools an can talk to other agents in the system"

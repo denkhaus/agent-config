@@ -1,4 +1,4 @@
-package profiles
+package tools
 
 import "github.com/denkhaus/agent-config/schema"
 

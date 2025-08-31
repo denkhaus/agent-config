@@ -1,15 +1,15 @@
-package default
+package settings
 
 import "github.com/denkhaus/agent-config/schema"
 import "github.com/denkhaus/agent-config/constants"
 
-project_manager: schema.#Settings & {
-    agent_id: constants.AgentIDProjectManager
-    name: "project-manager-default"
-    description: "Default settings for project manager agent"
+coder: schema.#SettingsConfig & {
+    agent_id: constants.AgentIDCoder
+    name: "coder-default"
+    description: "Default settings for coder agent"
 
     agent: {
-        application_name: "denkhaus-project-manager"
+        application_name: "denkhaus-coder"
         planning_enabled: true
         react_enabled: true
         max_iterations: 10
@@ -19,7 +19,7 @@ project_manager: schema.#Settings & {
 
         llm: {
             model: "deepseek-chat"
-            temperature: 0.5
+            temperature: 0.3
             max_tokens: 2000
             top_p: 1.0
             frequency_penalty: 0.0
