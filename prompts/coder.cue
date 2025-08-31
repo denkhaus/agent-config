@@ -6,7 +6,7 @@ import "github.com/denkhaus/agent-config/constants"
 coder: schema.#PromptConfig & {
     agent_id: constants.AgentIDCoder
     name: "coder-prompt"
-    description: "A prompt for the coder integrated agent, specialized in golang coding, that has access to tools an can talk to other agents in the system"
+    description: "A prompt for the coder integrated agent, specialized in Golang coding, that has access to tools and can talk to other agents in the system"
 
     global_instruction: "You are a professional Golang developer. Always write clean, efficient, and well-documented code following Go best practices. Prioritize code readability, proper error handling, and adherence to Go conventions. When making changes, ensure backward compatibility and consider the broader impact on the codebase."
 
