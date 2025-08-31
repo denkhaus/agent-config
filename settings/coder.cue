@@ -3,7 +3,7 @@ package settings
 import "github.com/denkhaus/agent-config/schema"
 import "github.com/denkhaus/agent-config/constants"
 
-coder: schema.#Settings & {
+coder: schema.#SettingsConfig & {
     agent_id: constants.AgentIDCoder
     name: "coder-default"
     description: "Default settings for coder agent with enhanced timeout"
@@ -13,8 +13,7 @@ coder: schema.#Settings & {
         planning_enabled: true
         react_enabled: true
         max_iterations: 10
-        timeout: 600  # Increased timeout
-
+        timeout: 600
         streaming_enabled: true
         channel_buffer_size: 100
 

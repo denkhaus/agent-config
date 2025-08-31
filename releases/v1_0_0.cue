@@ -9,7 +9,7 @@ v1_0_0: {
     release_date: "2025-08-31"
     description: "Release v1.0.0"
 
-    // Component versions
+    // Component versions - set independently based on actual changes
     components: {
         prompts: "v1.0.0"
         tools: "v1.0.0"
