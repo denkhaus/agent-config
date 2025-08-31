@@ -6,13 +6,14 @@ package config
 
 import (
 	"github.com/google/uuid"
-	"github.com/denkhaus/agents/shared"
+	"github.com/denkhaus/agents/pkg/shared"
 )
 
 // AgentConfig represents a complete agent configuration
 #AgentConfig: {
 	agent_id:     uuid.#UUID        @go(AgentID)
 	name:         string            @go(Name)
+	role:         shared.#AgentRole @go(Role)
 	description?: string            @go(Description)
 	type:         shared.#AgentType @go(Type)
 	prompt:       #PromptConfig     @go(Prompt)
@@ -48,7 +49,7 @@ import (
 	streaming_enabled:   bool         @go(StreamingEnabled)
 	channel_buffer_size: int          @go(ChannelBufferSize)
 	llm:                 #LLMSettings @go(LLM)
-	sub_agents?: [...uuid.#UUID] @go(SubAgents,[]uuid.UUID)
+	sub_agents?: [...shared.#AgentRole] @go(SubAgents,[]shared.AgentRole)
 	input_schema?: {...} @go(InputSchema,map[string]interface{})
 	output_schema?: {...} @go(OutputSchema,map[string]interface{})
 	output_key?: string @go(OutputKey)

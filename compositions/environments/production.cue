@@ -1,10 +1,13 @@
 package environments
 
-import "github.com/denkhaus/agent-config/compositions/stable"
+import (
+	"github.com/denkhaus/agent-config/compositions/stable"
+	"github.com/denkhaus/agent-config/schema"
+)
 
-production: {
+production: schema.#EnvironmentConfig & {
     environment: "production"
-    version: "v1.0.0"
+
     description: "Production environment configuration"
 
     agents: {

@@ -1,10 +1,13 @@
 package environments
 
-import "github.com/denkhaus/agent-config/compositions/stable"
+import (
+	"github.com/denkhaus/agent-config/compositions/stable"
+	"github.com/denkhaus/agent-config/schema"
+)
 
-development: {
+development: schema.#EnvironmentConfig & {
     environment: "development"
-    version: "v1.0.0"
+
     description: "Development environment configuration with enhanced debugging"
 
     agents: {
@@ -26,6 +29,7 @@ development: {
         project_manager: stable.project_manager
 
         researcher: stable.researcher & {
+            role: "researcher" // Changed to string literal
             tool: overrides: toolsets: {
                 tavily: {
                     enabled: true

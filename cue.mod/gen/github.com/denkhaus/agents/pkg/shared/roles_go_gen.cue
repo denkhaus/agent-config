@@ -4,26 +4,6 @@
 
 package shared
 
-#ModelProvider: string // #enumModelProvider
-
-#enumModelProvider:
-	#ModelProviderOpenAI
-
-#ModelProviderOpenAI: #ModelProvider & "openai"
-
-#AgentType: string // #enumAgentType
-
-#enumAgentType:
-	#AgentTypeDefault |
-	#AgentTypeChain |
-	#AgentTypeCycle |
-	#AgentTypeParallel
-
-#AgentTypeDefault:  #AgentType & "default"
-#AgentTypeChain:    #AgentType & "chain"
-#AgentTypeCycle:    #AgentType & "cycle"
-#AgentTypeParallel: #AgentType & "parallel"
-
 #AgentRole: string // #enumAgentRole
 
 #enumAgentRole:
@@ -37,6 +17,6 @@ package shared
 #AgentRoleSupervisor:     #AgentRole & "supervisor"
 #AgentRoleCoder:          #AgentRole & "coder"
 #AgentRoleDebugger:       #AgentRole & "debugger"
-#AgentRoleProjectManager: #AgentRole & "project-manager"
+#AgentRoleProjectManager: #AgentRole & "project_manager"
 #AgentRoleHuman:          #AgentRole & "human"
 #AgentRoleResearcher:     #AgentRole & "researcher"

@@ -23,20 +23,3 @@ package shared
 #AgentTypeChain:    #AgentType & "chain"
 #AgentTypeCycle:    #AgentType & "cycle"
 #AgentTypeParallel: #AgentType & "parallel"
-
-#AgentRole: string // #enumAgentRole
-
-#enumAgentRole:
-	#AgentRoleSupervisor |
-	#AgentRoleCoder |
-	#AgentRoleDebugger |
-	#AgentRoleProjectManager |
-	#AgentRoleHuman |
-	#AgentRoleResearcher
-
-#AgentRoleSupervisor:     #AgentRole & "supervisor"
-#AgentRoleCoder:          #AgentRole & "coder"
-#AgentRoleDebugger:       #AgentRole & "debugger"
-#AgentRoleProjectManager: #AgentRole & "project-manager"
-#AgentRoleHuman:          #AgentRole & "human"
-#AgentRoleResearcher:     #AgentRole & "researcher"

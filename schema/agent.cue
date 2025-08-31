@@ -2,6 +2,7 @@ package schema
 
 import (
 	providerConfig "github.com/denkhaus/agents/pkg/provider/config"
+	"github.com/denkhaus/agents/pkg/shared"
 )
 
 // Agent composition schema (different from runtime AgentConfig)
@@ -9,6 +10,7 @@ import (
     // Core identification
     agent_id: #UUID
     name: string
+    role: shared.#AgentRole // Use the Go type directly
     description?: string
     version: #Version
 
@@ -21,6 +23,14 @@ import (
     tool: #ToolsRef
 }
 
+// Expose Go AgentRole constants as CUE definitions for use in other CUE files
+AgentRoleCoder:          shared.#AgentRoleCoder
+AgentRoleProjectManager: shared.#AgentRoleProjectManager
+AgentRoleResearcher:     shared.#AgentRoleResearcher
+AgentRoleDebugger:       shared.#AgentRoleDebugger
+AgentRoleSupervisor:     shared.#AgentRoleSupervisor
+AgentRoleHuman:          shared.#AgentRoleHuman
+
 
 #PromptConfig: providerConfig.#PromptConfig
 #SettingsConfig: providerConfig.#SettingsConfig
@@ -31,19 +41,16 @@ import (
 // Legacy reference types for backward compatibility
 #PromptRef: {
     source: #PromptConfig
-    version: #Version
     overrides?: {...}
 }
 
 #SettingsRef: {
     source: #SettingsConfig
-    version: #Version
     overrides?: {...}
 }
 
 #ToolsRef: {
     source: #ToolsConfig
-    version: #Version
     overrides?: {
         tools?: {[string]: providerConfig.#ToolConfig}
         toolsets?: {[string]: providerConfig.#ToolSetConfig}
