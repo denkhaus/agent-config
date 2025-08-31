@@ -7,45 +7,51 @@ project_manager: schema.#ToolProfile & {
 	description: "Project management and coordination tools"
 
 	tools: {
-		calculator: {
+		calculator: schema.#CalculatorToolConfig & {
 			enabled: true
 			config: {}
 		}
 
-		current_time: {
+		current_time: schema.#TimeToolConfig & {
 			enabled: true
-			config: {}
+			config: {
+				default_timezone: "UTC"
+			}
 		}
 	}
 
 	toolsets: {
-		project: {
-			enabled: true
-			config: {}
-		}
-
-		file: {
+		project: schema.#ProjectToolSetConfig & {
 			enabled: true
 			config: {
-				read_only:     true // Project manager can read but not modify files directly
-				base_dir:      "./workspace"
-				max_file_size: 5242880 // 5MB
+				read_only: false
 			}
 		}
 
-		shell: {
+		file: schema.#FileToolSetConfig & {
+			enabled: true
+			config: {
+				workspace_path: "./workspace"
+				read_only: true // Project manager can read but not modify files directly
+			}
+		}
+
+		shell: schema.#ShellToolSetConfig & {
 			enabled: false
-			config: {}
+			config: {
+				base_dir: "./workspace"
+				execute_command_enabled: false
+			}
 		}
 
 		tavily: schema.#TavilyToolSetConfig & {
 			enabled: false
 			config: {
-				ApiKey: ""
-				SearchEnabled: false
-				CrawlEnabled: false
-				ExtractEnabled: false
-				MapEnabled: false
+				api_key: ""
+				search_enabled: false
+				crawl_enabled: false
+				extract_enabled: false
+				map_enabled: false
 			}
 		}
 	}
