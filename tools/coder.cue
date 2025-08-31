@@ -29,7 +29,7 @@ coder: schema.#ToolProfile & {
 	}
 
 	toolsets: {
-		file: schema.#FileToolSetConfig & {
+		file_toolset: schema.#FileToolSetConfig & {
 			enabled: true
 			config: {
 				workspace_path: "./workspace"
@@ -37,7 +37,7 @@ coder: schema.#ToolProfile & {
 			}
 		}
 
-		shell: schema.#ShellToolSetConfig & {
+		shell_toolset: schema.#ShellToolSetConfig & {
 			enabled: true
 			config: {
 				base_dir: "./workspace"
@@ -51,14 +51,14 @@ coder: schema.#ToolProfile & {
 			}
 		}
 
-		project: schema.#ProjectToolSetConfig & {
+		project_toolset: schema.#ProjectToolSetConfig & {
 			enabled: true
 			config: {
 				read_only: false
 			}
 		}
 
-		tavily: schema.#TavilyToolSetConfig & {
+		tavily_toolset: schema.#TavilyToolSetConfig & {
 			enabled: false
 			config: {
 				api_key: ""

@@ -30,14 +30,14 @@ researcher: schema.#ToolProfile & {
             }
         }
 
-        duckduckgo: schema.#DuckToolConfig & {
+        duckduckgo_search: schema.#DuckToolConfig & {
             enabled: true
             config: {}
         }
     }
 
     toolsets: {
-        tavily: schema.#TavilyToolSetConfig & {
+        tavily_toolset: schema.#TavilyToolSetConfig & {
             enabled: true
             config: {
                 api_key: "env:TAVILY_API_KEY"
@@ -48,7 +48,7 @@ researcher: schema.#ToolProfile & {
             }
         }
 
-        file: schema.#FileToolSetConfig & {
+        file_toolset: schema.#FileToolSetConfig & {
             enabled: true
             config: {
                 workspace_path: "./workspace"
@@ -56,7 +56,7 @@ researcher: schema.#ToolProfile & {
             }
         }
 
-        shell: schema.#ShellToolSetConfig & {
+        shell_toolset: schema.#ShellToolSetConfig & {
             enabled: false
             config: {
                 base_dir: "./workspace"
@@ -64,7 +64,7 @@ researcher: schema.#ToolProfile & {
             }
         }
 
-        project: schema.#ProjectToolSetConfig & {
+        project_toolset: schema.#ProjectToolSetConfig & {
             enabled: false
             config: {
                 read_only: true
