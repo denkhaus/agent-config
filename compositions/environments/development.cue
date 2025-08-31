@@ -10,12 +10,15 @@ development: {
     agents: {
         coder: stable.coder & {
             tools: overrides: toolsets: {
-                shell: config: {
-                    timeout: 600  // 10 minutes for dev builds
-                    allowed_commands: [
-                        "go", "git", "make", "ls", "cat", "grep", "find",
-                        "npm", "yarn", "docker", "curl", "wget"
-                    ]
+                shell: {
+                    enabled: true
+                    config: {
+                        timeout: 600  // 10 minutes for dev builds
+                        allowed_commands: [
+                            "go", "git", "make", "ls", "cat", "grep", "find",
+                            "npm", "yarn", "docker", "curl", "wget"
+                        ]
+                    }
                 }
             }
         }
@@ -24,9 +27,12 @@ development: {
 
         researcher: stable.researcher & {
             tools: overrides: toolsets: {
-                tavily: config: {
-                    api_key: "env:TAVILY_API_KEY:dev-fallback-key"
-                    max_results: 5  // Reduced for dev
+                tavily: {
+                    enabled: true
+                    config: {
+                        api_key: "env:TAVILY_API_KEY:dev-fallback-key"
+                        max_results: 5  // Reduced for dev
+                    }
                 }
                 shell: {
                     enabled: true  // Enable shell in dev for debugging

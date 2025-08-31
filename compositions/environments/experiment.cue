@@ -2,7 +2,7 @@ package environments
 
 import "github.com/denkhaus/agent-config/compositions/experimental"
 
-production: {
+experiment: {
     environment: "production"
     version: "v1.0.0"
     description: "Production environment configuration"

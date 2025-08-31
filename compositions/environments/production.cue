@@ -10,9 +10,12 @@ production: {
     agents: {
         coder: stable.coder & {
             tools: overrides: toolsets: {
-                shell: config: {
-                    timeout: 300  // 5 minutes for production builds
-                    allowed_commands: ["go", "git", "make", "ls", "cat"]
+                shell: {
+                    enabled: true
+                    config: {
+                        timeout: 300  // 5 minutes for production builds
+                        allowed_commands: ["go", "git", "make", "ls", "cat"]
+                    }
                 }
             }
         }
@@ -21,10 +24,13 @@ production: {
 
         researcher: stable.researcher & {
             tools: overrides: toolsets: {
-                tavily: config: {
-                    api_key: "env:TAVILY_API_KEY"
-                    rate_limit: 100
-                    max_results: 10
+                tavily: {
+                    enabled: true
+                    config: {
+                        api_key: "env:TAVILY_API_KEY"
+                        rate_limit: 100
+                        max_results: 10
+                    }
                 }
             }
         }

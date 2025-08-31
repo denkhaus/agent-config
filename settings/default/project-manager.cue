@@ -1,9 +1,10 @@
 package default
 
 import "github.com/denkhaus/agent-config/schema"
+import "github.com/denkhaus/agent-config/constants"
 
 project_manager: schema.#Settings & {
-    agent_id: "550e8400-e29b-41d4-a716-446655440003"
+    agent_id: constants.AgentIDProjectManager
     name: "project-manager-default"
     description: "Default settings for project manager agent"
 
@@ -13,6 +14,8 @@ project_manager: schema.#Settings & {
         react_enabled: true
         max_iterations: 10
         timeout: 300
+        streaming_enabled: true
+        channel_buffer_size: 100
 
         llm: {
             model: "deepseek-chat"
@@ -21,6 +24,7 @@ project_manager: schema.#Settings & {
             top_p: 1.0
             frequency_penalty: 0.0
             presence_penalty: 0.0
+            provider: "openai"
         }
     }
 
