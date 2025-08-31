@@ -34,7 +34,7 @@ researcher: schema.#ToolProfile & {
     }
 
     toolsets: {
-        tavily: {
+        tavily: schema.#TavilyToolConfig &{
             enabled: true
             config: {
                 api_key: "env:TAVILY_API_KEY"
