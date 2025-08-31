@@ -1,6 +1,9 @@
 package schema
 
-import "strings"
+import (
+	"strings"
+	tavily "github.com/denkhaus/agents/pkg/tools/tavily"
+)
 
 #ToolProfile: {
 	// Core identification
@@ -17,15 +20,9 @@ import "strings"
 	config?: {...}
 }
 
-#TavilyToolConfig: {
+#TavilyToolSetConfig: {
 	enabled: bool | *false
-	config?: {
-		api_key:         string
-		search_enabled:  bool | *true
-		crawl_enabled:   bool | *true
-		extract_enabled: bool | *true
-		map_enabled:     bool | *true
-	}
+	config?: tavily.#TavilyToolSet
 }
 
 #ToolSetConfig: {

@@ -34,13 +34,14 @@ researcher: schema.#ToolProfile & {
     }
 
     toolsets: {
-        tavily: schema.#TavilyToolConfig &{
+        tavily: schema.#TavilyToolSetConfig & {
             enabled: true
             config: {
-                api_key: "env:TAVILY_API_KEY"
-                max_results: 10
-                include_images: false
-                include_answer: true
+                ApiKey: "env:TAVILY_API_KEY"
+                SearchEnabled: true
+                CrawlEnabled: true
+                ExtractEnabled: true
+                MapEnabled: true
             }
         }
 

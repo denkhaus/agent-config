@@ -46,9 +46,15 @@ coder: schema.#ToolProfile & {
 			config: {}
 		}
 
-		tavily: schema.#TavilyToolConfig & {
+		tavily: schema.#TavilyToolSetConfig & {
 			enabled: false
-			config: {}
+			config: {
+				ApiKey: ""
+				SearchEnabled: false
+				CrawlEnabled: false
+				ExtractEnabled: false
+				MapEnabled: false
+			}
 		}
 	}
 
