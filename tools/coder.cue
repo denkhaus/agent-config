@@ -4,7 +4,7 @@ import "github.com/denkhaus/agent-config/schema"
 
 coder: schema.#ToolProfile & {
 	name:        "coder-basic"
-	description: "Development tools for coding, building, and testing"
+	description: "Development tools for coding, building, and testing with enhanced capabilities"
 
 	tools: {
 		calculator: schema.#CalculatorToolConfig & {
