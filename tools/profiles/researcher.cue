@@ -7,27 +7,30 @@ researcher: schema.#ToolProfile & {
     description: "Research and information gathering tools"
 
     tools: {
-        calculator: {
+        calculator: schema.#CalculatorToolConfig & {
             enabled: true
             config: {}
         }
 
-        fetch: {
+        fetch: schema.#FetchToolConfig & {
             enabled: true
             config: {
-                timeout: 60
+                default_timeout: 60
                 default_headers: {
                     "User-Agent": "Research-Agent/1.0"
                 }
+                max_retries: 3
             }
         }
 
-        current_time: {
+        current_time: schema.#TimeToolConfig & {
             enabled: true
-            config: {}
+            config: {
+                default_timezone: "UTC"
+            }
         }
 
-        duckduckgo: {
+        duckduckgo: schema.#DuckToolConfig & {
             enabled: true
             config: {}
         }
@@ -37,31 +40,35 @@ researcher: schema.#ToolProfile & {
         tavily: schema.#TavilyToolSetConfig & {
             enabled: true
             config: {
-                ApiKey: "env:TAVILY_API_KEY"
-                SearchEnabled: true
-                CrawlEnabled: true
-                ExtractEnabled: true
-                MapEnabled: true
+                api_key: "env:TAVILY_API_KEY"
+                search_enabled: true
+                crawl_enabled: true
+                extract_enabled: true
+                map_enabled: true
             }
         }
 
-        file: {
+        file: schema.#FileToolSetConfig & {
             enabled: true
             config: {
+                workspace_path: "./workspace"
                 read_only: true  // Researcher can read files but not modify them
-                base_dir: "./workspace"
-                max_file_size: 5242880  // 5MB
             }
         }
 
-        shell: {
+        shell: schema.#ShellToolSetConfig & {
             enabled: false
-            config: {}
+            config: {
+                base_dir: "./workspace"
+                execute_command_enabled: false
+            }
         }
 
-        project: {
+        project: schema.#ProjectToolSetConfig & {
             enabled: false
-            config: {}
+            config: {
+                read_only: true
+            }
         }
     }
 

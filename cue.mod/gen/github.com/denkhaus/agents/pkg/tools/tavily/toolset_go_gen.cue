@@ -10,13 +10,18 @@ package tavily
 #DefaultExtractToolName: "tavily_extract"
 #DefaultMapToolName:     "tavily_map"
 
+// ToolSetConfig represents the tavily toolset configuration
+#ToolSetConfig: {
+	api_key:         string @go(ApiKey)
+	search_enabled:  bool   @go(SearchEnabled)
+	crawl_enabled:   bool   @go(CrawlEnabled)
+	extract_enabled: bool   @go(ExtractEnabled)
+	map_enabled:     bool   @go(MapEnabled)
+}
+
 // TavilyToolSet implements the ToolSet interface for Tavily API.
 #TavilyToolSet: {
-	ApiKey:         string
-	SearchEnabled:  bool
-	CrawlEnabled:   bool
-	ExtractEnabled: bool
-	MapEnabled:     bool
+	ToolSetConfig: #ToolSetConfig
 }
 
 // Search tool
