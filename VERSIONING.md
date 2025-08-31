@@ -48,6 +48,34 @@ mage cueVersion:tag v1.1.0
 3. **Easy Rollback**: Can easily checkout any previous version
 4. **Branching**: Can work on different versions in separate branches
 
+## Release Process
+
+1. Make changes to CUE configurations
+2. Validate with `mage cueVersion:validate`
+3. Commit changes to Git
+4. Create release with `mage cueVersion:tag vX.Y.Z`
+5. Push changes and tags to remote repository
+
+Example:
+```bash
+# 1. Make changes
+# Edit your CUE files
+
+# 2. Validate
+mage cueVersion:validate
+
+# 3. Commit changes
+git add .
+git commit -m "Description of changes"
+
+# 4. Create release tag
+mage cueVersion:tag v1.1.0
+
+# 5. Push to remote
+git push origin main
+git push origin v1.1.0
+```
+
 ## Migration Notes
 
 - Previous version directories (`config/prompts/v1_0`, `config/settings/default`) have been moved to flat structures
