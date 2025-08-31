@@ -1,7 +1,7 @@
 package schema
 
 import (
-	"strings"
+	providerConfig "github.com/denkhaus/agents/pkg/provider/config"
 	calculator "github.com/denkhaus/agents/pkg/tools/calculator"
 	duck "github.com/denkhaus/agents/pkg/tools/duck"
 	fetch "github.com/denkhaus/agents/pkg/tools/fetch"
@@ -13,70 +13,44 @@ import (
 	time "github.com/denkhaus/agents/pkg/tools/time"
 )
 
-#ToolProfile: {
-	// Core identification
-	name:         string & strings.MinRunes(1) & strings.MaxRunes(100)
-	description?: string & strings.MaxRunes(500)
+// Use the ToolsConfig type from pkg/provider/config
+#ToolProfile: providerConfig.#ToolsConfig
 
-	// Tool configurations
-	tools: {[string]: #ToolConfig}
-	toolsets: {[string]: #ToolSetConfig}
-}
-
-// Individual Tool Configurations
-#CalculatorToolConfig: {
-	enabled: bool | *true
+// Individual Tool Configurations - extend base ToolConfig with specific schemas
+#CalculatorToolConfig: providerConfig.#ToolConfig & {
 	config?: calculator.#ToolConfig
 }
 
-#DuckToolConfig: {
-	enabled: bool | *true
+#DuckToolConfig: providerConfig.#ToolConfig & {
 	config?: duck.#ToolConfig
 }
 
-#FetchToolConfig: {
-	enabled: bool | *true
+#FetchToolConfig: providerConfig.#ToolConfig & {
 	config?: fetch.#ToolConfig
 }
 
-#StateToolConfig: {
-	enabled: bool | *true
+#StateToolConfig: providerConfig.#ToolConfig & {
 	config?: state.#ToolConfig
 }
 
-#TimeToolConfig: {
-	enabled: bool | *true
+#TimeToolConfig: providerConfig.#ToolConfig & {
 	config?: time.#ToolConfig
 }
 
-// ToolSet Configurations
-#FileToolSetConfig: {
-	enabled: bool | *true
+// ToolSet Configurations - extend base ToolSetConfig with specific schemas
+#FileToolSetConfig: providerConfig.#ToolSetConfig & {
 	config?: file.#ToolSetConfig
 }
 
-#ProjectToolSetConfig: {
-	enabled: bool | *true
+#ProjectToolSetConfig: providerConfig.#ToolSetConfig & {
 	config?: project.#ToolSetConfig
 }
 
-#ShellToolSetConfig: {
-	enabled: bool | *true
+#ShellToolSetConfig: providerConfig.#ToolSetConfig & {
 	config?: shell.#ToolSetConfig
 }
 
-#TavilyToolSetConfig: {
+#TavilyToolSetConfig: providerConfig.#ToolSetConfig & {
 	enabled: bool | *false
 	config?: tavily.#ToolSetConfig
-}
-
-// Generic fallback configurations
-#ToolConfig: {
-	enabled: bool | *true
-	config?: {...}
-}
-
-#ToolSetConfig: {
-	enabled: bool | *true
-	config?: {...}
 }

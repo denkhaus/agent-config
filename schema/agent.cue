@@ -1,12 +1,15 @@
 package schema
 
-import "strings"
+import (
+	providerConfig "github.com/denkhaus/agents/pkg/provider/config"
+)
 
+// Agent composition schema (different from runtime AgentConfig)
 #Agent: {
     // Core identification
     agent_id: #UUID
-    name: string & strings.MinRunes(1) & strings.MaxRunes(100)
-    description?: string & strings.MaxRunes(500)
+    name: string
+    description?: string
     version: #Version
 
     // Agent type
@@ -18,24 +21,30 @@ import "strings"
     tools: #ToolsRef
 }
 
+// Use the types from pkg/provider/config
+#PromptConfig: providerConfig.#PromptConfig
+#SettingsConfig: providerConfig.#SettingsConfig
+#ToolsConfig: providerConfig.#ToolsConfig
+
+// Legacy reference types for backward compatibility
 #PromptRef: {
-    source: #Prompt
+    source: #PromptConfig
     version: #Version
     overrides?: {...}
 }
 
 #SettingsRef: {
-    source: #Settings
+    source: #SettingsConfig
     version: #Version
     overrides?: {...}
 }
 
 #ToolsRef: {
-    source: #ToolProfile
+    source: #ToolsConfig
     version: #Version
     overrides?: {
-        tools?: {[string]: #ToolConfig}
-        toolsets?: {[string]: #ToolSetConfig}
+        tools?: {[string]: providerConfig.#ToolConfig}
+        toolsets?: {[string]: providerConfig.#ToolSetConfig}
     }
 }
 
