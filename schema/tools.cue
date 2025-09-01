@@ -2,21 +2,19 @@ package schema
 
 import (
 	providerConfig "github.com/denkhaus/agents/pkg/provider/config"
-	calculator "github.com/denkhaus/agents/pkg/tools/calculator"
-	duck "github.com/denkhaus/agents/pkg/tools/duck"
-	fetch "github.com/denkhaus/agents/pkg/tools/fetch"
-	file "github.com/denkhaus/agents/pkg/tools/file"
-	project "github.com/denkhaus/agents/pkg/tools/project"
-	shell "github.com/denkhaus/agents/pkg/tools/shell"
-	state "github.com/denkhaus/agents/pkg/tools/state"
-	tavily "github.com/denkhaus/agents/pkg/tools/tavily"
-	time "github.com/denkhaus/agents/pkg/tools/time"
+	"github.com/denkhaus/agents/pkg/tools/calculator"
+	"github.com/denkhaus/agents/pkg/tools/duck"
+	"github.com/denkhaus/agents/pkg/tools/fetch"
+	"github.com/denkhaus/agents/pkg/tools/file"
+	"github.com/denkhaus/agents/pkg/tools/project"
+	"github.com/denkhaus/agents/pkg/tools/shell"
+	"github.com/denkhaus/agents/pkg/tools/state"
+	"github.com/denkhaus/agents/pkg/tools/tavily"
+	"github.com/denkhaus/agents/pkg/tools/time"
 )
 
-// Use the ToolsConfig type from pkg/provider/config
 #ToolProfile: providerConfig.#ToolsConfig
 
-// Individual Tool Configurations - extend base ToolConfig with specific schemas
 #CalculatorToolConfig: providerConfig.#ToolConfig & {
 	config?: calculator.#ToolConfig
 }
@@ -37,7 +35,6 @@ import (
 	config?: time.#ToolConfig
 }
 
-// ToolSet Configurations - extend base ToolSetConfig with specific schemas
 #FileToolSetConfig: providerConfig.#ToolSetConfig & {
 	config?: file.#ToolSetConfig
 }

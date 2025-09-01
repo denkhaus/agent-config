@@ -13,7 +13,7 @@ production: schema.#EnvironmentConfig & {
     agents: {
         coder: stable.coder & {
             tool: overrides: toolsets: {
-                shell: {
+                shell_toolset: {
                     enabled: true
                     config: {
                         timeout: 300  // 5 minutes for production builds
@@ -27,7 +27,7 @@ production: schema.#EnvironmentConfig & {
 
         researcher: stable.researcher & {
             tool: overrides: toolsets: {
-                tavily: {
+                tavily_toolset: {
                     enabled: true
                     config: {
                         api_key: "env:TAVILY_API_KEY"

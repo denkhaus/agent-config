@@ -7,20 +7,19 @@ import (
 
 // Agent composition schema (different from runtime AgentConfig)
 #AgentConfig: {
-    // Core identification
-    agent_id: #UUID
-    name: string
-    role: shared.#AgentRole // Use the Go type directly
-    description?: string
-    version: #Version
+	agent_id:     #UUID
+	name:         string
+	role:         shared.#AgentRole
+	description?: string
+	version:      #Version
 
-    // Agent type
-    type: "default" | "chain" | "cycle" | "parallel" | *"default"
+	// Agent type
+	type: "default" | "chain" | "cycle" | "parallel" | *"default"
 
-    // Component references
-    prompt: #PromptRef
-    setting: #SettingsRef
-    tool: #ToolsRef
+	// Component references
+	prompt:  #PromptRef
+	setting: #SettingsRef
+	tool:    #ToolsRef
 }
 
 // Expose Go AgentRole constants as CUE definitions for use in other CUE files
@@ -31,28 +30,27 @@ AgentRoleDebugger:       shared.#AgentRoleDebugger
 AgentRoleSupervisor:     shared.#AgentRoleSupervisor
 AgentRoleHuman:          shared.#AgentRoleHuman
 
-
-#PromptConfig: providerConfig.#PromptConfig
+#PromptConfig:   providerConfig.#PromptConfig
 #SettingsConfig: providerConfig.#SettingsConfig
-#ToolsConfig: providerConfig.#ToolsConfig
-#AgentSettings: providerConfig.#AgentSettings
-#LLMSettings: providerConfig.#LLMSettings
+#ToolsConfig:    providerConfig.#ToolsConfig
+#AgentSettings:  providerConfig.#AgentSettings
+#LLMSettings:    providerConfig.#LLMSettings
 
 // Legacy reference types for backward compatibility
 #PromptRef: {
-    source: #PromptConfig
-    overrides?: {...}
+	source: #PromptConfig
+	overrides?: {...}
 }
 
 #SettingsRef: {
-    source: #SettingsConfig
-    overrides?: {...}
+	source: #SettingsConfig
+	overrides?: {...}
 }
 
 #ToolsRef: {
-    source: #ToolsConfig
-    overrides?: {
-        tools?: {[string]: providerConfig.#ToolConfig}
-        toolsets?: {[string]: providerConfig.#ToolSetConfig}
-    }
+	source: #ToolsConfig
+	overrides?: {
+		tools?: {[string]: providerConfig.#ToolConfig}
+		toolsets?: {[=~".*_toolset$"]: providerConfig.#ToolSetConfig}
+	}
 }
