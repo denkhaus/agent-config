@@ -6,36 +6,24 @@ import (
 )
 
 production: schema.#EnvironmentConfig & {
-    environment: "production"
+	environment: "production"
 
-    description: "Production environment configuration"
+	description: "Production environment configuration"
 
-    agents: {
-        coder: stable.coder & {
-            tool: overrides: toolsets: {
-                shell_toolset: {
-                    enabled: true
-                    config: {
-                        timeout: 300  // 5 minutes for production builds
-                        allowed_commands: ["go", "git", "make", "ls", "cat"]
-                    }
-                }
-            }
-        }
+	agents: {
+		coder: stable.coder & {
+			tool: overrides: toolsets: {
+				shell_toolset: {
+					enabled: true
+					config: {
+						timeout: 300 // 5 minutes for production builds
+						allowed_commands: ["go", "git", "make", "ls", "cat"]
+					}
+				}
+			}
+		}
 
-        project_manager: stable.project_manager
-
-        researcher: stable.researcher & {
-            tool: overrides: toolsets: {
-                tavily_toolset: {
-                    enabled: true
-                    config: {
-                        api_key: "env:TAVILY_API_KEY"
-                        rate_limit: 100
-                        max_results: 10
-                    }
-                }
-            }
-        }
-    }
+		project_manager: stable.project_manager
+		researcher:      stable.researcher
+	}
 }

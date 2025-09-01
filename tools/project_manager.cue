@@ -15,7 +15,7 @@ project_manager: schema.#ToolProfile & {
 		current_time: schema.#TimeToolConfig & {
 			enabled: true
 			config: {
-				default_timezone: "UTC"
+				default_timezone: "Europe/Berlin"
 			}
 		}
 	}
@@ -31,29 +31,17 @@ project_manager: schema.#ToolProfile & {
 		file_toolset: schema.#FileToolSetConfig & {
 			enabled: true
 			config: {
-				workspace_path: "./workspace"
-				read_only: true // Project manager can read but not modify files directly
+				workspace_path: "./test_workspace"
+				read_only:      true
 			}
 		}
 
 		shell_toolset: schema.#ShellToolSetConfig & {
 			enabled: false
-			config: {
-				base_dir: "./workspace"
-				execute_command_enabled: false
-			}
 		}
 
 		tavily_toolset: schema.#TavilyToolSetConfig & {
 			enabled: false
-			config: {
-				api_key: ""
-				search_enabled: false
-				crawl_enabled: false
-				extract_enabled: false
-				map_enabled: false
-			}
 		}
 	}
-
 }

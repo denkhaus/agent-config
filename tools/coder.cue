@@ -15,7 +15,7 @@ coder: schema.#ToolProfile & {
 		current_time: schema.#TimeToolConfig & {
 			enabled: true
 			config: {
-				default_timezone: "UTC"
+				default_timezone: "Europe/Berlin"
 			}
 		}
 
@@ -23,7 +23,7 @@ coder: schema.#ToolProfile & {
 			enabled: true
 			config: {
 				default_timeout: 30
-				max_retries: 2
+				max_retries:     2
 			}
 		}
 	}
@@ -32,22 +32,22 @@ coder: schema.#ToolProfile & {
 		file_toolset: schema.#FileToolSetConfig & {
 			enabled: true
 			config: {
-				workspace_path: "./workspace"
-				read_only: false
+				workspace_path: "./test_workspace"
+				read_only:      false
 			}
 		}
 
 		shell_toolset: schema.#ShellToolSetConfig & {
 			enabled: true
 			config: {
-				base_dir: "./workspace"
+				base_dir:                "./test_workspace"
 				execute_command_enabled: true
 				allowed_commands: [
 					"go", "git", "ls", "cat", "grep", "find",
 					"make", "npm", "yarn", "docker",
 				]
-				timeout: 300000000000 // 5 minutes in nanoseconds
-				max_output_size: 10485760 // 10MB
+				timeout:         300000000000 // 5 minutes in nanoseconds
+				max_output_size: 10485760     // 10MB
 			}
 		}
 
@@ -60,13 +60,6 @@ coder: schema.#ToolProfile & {
 
 		tavily_toolset: schema.#TavilyToolSetConfig & {
 			enabled: false
-			config: {
-				api_key: ""
-				search_enabled: false
-				crawl_enabled: false
-				extract_enabled: false
-				map_enabled: false
-			}
 		}
 	}
 
