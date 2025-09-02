@@ -52,7 +52,8 @@ import (
 	sub_agents?: [...shared.#AgentRole] @go(SubAgents,[]shared.AgentRole)
 	input_schema?: {...} @go(InputSchema,map[string]interface{})
 	output_schema?: {...} @go(OutputSchema,map[string]interface{})
-	output_key?: string @go(OutputKey)
+	output_key?:     string                        @go(OutputKey)
+	time_awareness?: null | #TimeAwarenessSettings @go(TimeAwareness,*TimeAwarenessSettings)
 }
 
 // LLMSettings represents LLM configuration

@@ -13,17 +13,16 @@ coder: schema.#AgentConfig & {
 	name:        "coder"
 	role:        schema.AgentRoleCoder // Use the strong type from schema
 	description: "Software development agent with coordination capabilities"
-	version:     "v1.0.0"
 
 	prompt: {
-		source:  prompts.coder
+		source: prompts.coder
 	}
 
 	setting: {
-		source:  settings.coder
+		source: settings.coder
 	}
 
 	tool: {
-		source:  tools.coder
+		source: tools.coder
 	}
 }

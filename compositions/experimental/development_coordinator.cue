@@ -10,32 +10,31 @@ import (
 
 // Example of a chain agent that coordinates multiple sub-agents
 development_coordinator: schema.#AgentConfig & {
-    agent_id: constants.AgentIDDevelopmentCoordinator
-    name: "development-coordinator"
-    role: schema.AgentRoleSupervisor // Assign a role
-    description: "A chain agent that coordinates the development process by executing sub-agents in sequence"
-    version: "v1.0.0"
-    type: "chain"  // This is a chain agent
+	agent_id:    constants.AgentIDDevelopmentCoordinator
+	name:        "development-coordinator"
+	role:        schema.AgentRoleSupervisor // Assign a role
+	description: "A chain agent that coordinates the development process by executing sub-agents in sequence"
+	type:        "chain" // This is a chain agent
 
-    prompt: {
-        source: prompts.project_manager
-    }
+	prompt: {
+		source: prompts.project_manager
+	}
 
-    setting: {
-        source: settings.project_manager
-        overrides: {
-            agent: {
-                // For chain agents, we specify the sub-agents to execute in sequence
-                sub_agents: [
-                    schema.AgentRoleProjectManager, // Use role instead of ID
-                    schema.AgentRoleResearcher,     // Use role instead of ID
-                    schema.AgentRoleCoder,          // Use role instead of ID
-                ]
-            }
-        }
-    }
+	setting: {
+		source: settings.project_manager
+		overrides: {
+			agent: {
+				// For chain agents, we specify the sub-agents to execute in sequence
+				sub_agents: [
+					schema.AgentRoleProjectManager, // Use role instead of ID
+					schema.AgentRoleResearcher,     // Use role instead of ID
+					schema.AgentRoleCoder,          // Use role instead of ID
+				]
+			}
+		}
+	}
 
-    tool: {
-        source: tools.project_manager
-    }
+	tool: {
+		source: tools.project_manager
+	}
 }
