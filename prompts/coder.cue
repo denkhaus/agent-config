@@ -1,11 +1,14 @@
 package prompts
 
-import "github.com/denkhaus/agent-config/schema"
+import (
+	schemaPkg "github.com/denkhaus/agent-config/schema"
+	"github.com/denkhaus/agent-config/constants"
+)
 
-import "github.com/denkhaus/agent-config/constants"
-
-coder: schema.#PromptConfig & {
+coder: schemaPkg.#PromptConfig & {
 	agent_id:    constants.AgentIDCoder
+	schema: schemaPkg.#PromptSchemaDefault
+
 	name:        "coder-prompt"
 	description: "A prompt for the coder integrated agent, specialized in Golang coding, that has access to tools and can talk to other agents in the system"
 
@@ -39,35 +42,5 @@ coder: schema.#PromptConfig & {
 		- Prefer to use the 'replace_content' tool instead of 'save_file'
 		"""
 
-	schema: {
-		type: "object"
-		properties: {
-			tool_info: {
-				type: "array"
-				items: {
-					type: "object"
-					properties: {
-						Name: {type: "string"}
-						Description: {type: "string"}
-					}
-					required: ["Name", "Description"]
-				}
-			}
-			agent_info: {
-				type: "array"
-				items: {
-					type: "object"
-					properties: {
-						Name: {type: "string"}
-						Role: {type: "string"}
-						ID: {type: "string"}
-						Description: {type: "string"}
-					}
-					required: ["Name", "Role", "ID", "Description"]
-				}
-			}
-		}
-		required: ["tool_info", "agent_info"]
-	}
 
 }

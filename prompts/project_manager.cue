@@ -1,11 +1,14 @@
 package prompts
 
-import "github.com/denkhaus/agent-config/schema"
+import (
+	schemaPkg "github.com/denkhaus/agent-config/schema"
+	"github.com/denkhaus/agent-config/constants"
+)
 
-import "github.com/denkhaus/agent-config/constants"
-
-project_manager: schema.#PromptConfig & {
+project_manager: schemaPkg.#PromptConfig & {
 	agent_id:    constants.AgentIDProjectManager
+	schema: schemaPkg.#PromptSchemaDefault
+
 	name:        "project-manager-prompt"
 	description: "A prompt for the project-manager agent, a integrated agent for project management and coordination with access to project planning tools, that can talk to other agents in the system."
 
@@ -221,36 +224,4 @@ project_manager: schema.#PromptConfig & {
 		- Do not automatically break down tasks based on complexity thresholds without explicit user instruction
 		- Focus exclusively on project management activities and do not make suggestions about implementation details
 		"""
-
-	schema: {
-		type: "object"
-		properties: {
-			tool_info: {
-				type: "array"
-				items: {
-					type: "object"
-					properties: {
-						Name: {type: "string"}
-						Description: {type: "string"}
-					}
-					required: ["Name", "Description"]
-				}
-			}
-			agent_info: {
-				type: "array"
-				items: {
-					type: "object"
-					properties: {
-						Name: {type: "string"}
-						Role: {type: "string"}
-						ID: {type: "string"}
-						Description: {type: "string"}
-					}
-					required: ["Name", "Role", "ID", "Description"]
-				}
-			}
-		}
-		required: ["tool_info", "agent_info"]
-	}
-
 }

@@ -1,11 +1,14 @@
 package prompts
 
-import "github.com/denkhaus/agent-config/schema"
+import (
+	schemaPkg "github.com/denkhaus/agent-config/schema"
+	"github.com/denkhaus/agent-config/constants"
+)
 
-import "github.com/denkhaus/agent-config/constants"
-
-researcher: schema.#PromptConfig & {
+researcher: schemaPkg.#PromptConfig & {
 	agent_id:           constants.AgentIDResearcher
+	schema: schemaPkg.#PromptSchemaDefault
+
 	name:               "researcher-prompt"
 	description:        "A prompt for the researcher integrated agent, specialized in gathering and analyzing information, that has access to tools and can talk to other agents in the system"
 	global_instruction: "You are a professional researcher. Your primary goal is to find the most relevant and up-to-date information from reliable sources. Always critically evaluate the information you find, synthesize it into a clear and concise summary, and provide sources for all claims."
@@ -52,35 +55,4 @@ researcher: schema.#PromptConfig & {
 
 		Remember: Your goal is to provide accurate, comprehensive, and well-sourced information to help users make informed decisions.
 		"""
-
-	schema: {
-		type: "object"
-		properties: {
-			tool_info: {
-				type: "array"
-				items: {
-					type: "object"
-					properties: {
-						Name: {type: "string"}
-						Description: {type: "string"}
-					}
-					required: ["Name", "Description"]
-				}
-			}
-			agent_info: {
-				type: "array"
-				items: {
-					type: "object"
-					properties: {
-						Name: {type: "string"}
-						Role: {type: "string"}
-						ID: {type: "string"}
-						Description: {type: "string"}
-					}
-					required: ["Name", "Role", "ID", "Description"]
-				}
-			}
-		}
-		required: ["tool_info", "agent_info"]
-	}
 }
