@@ -14,15 +14,7 @@ researcher: schema.#AgentConfig & {
 	role:        schema.AgentRoleResearcher // Use the strong type from schema
 	description: "Research and information gathering agent"
 
-	prompt: {
-		source: prompts.researcher
-	}
-
-	setting: {
-		source: settings.researcher
-	}
-
-	tool: {
-		source: tools.researcher
-	}
+	prompt: prompts.researcher
+	setting: settings.researcher
+	tool: tools.researcher
 }

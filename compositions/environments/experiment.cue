@@ -6,18 +6,16 @@ import (
 )
 
 experiment: schema.#EnvironmentConfig & {
-    environment: "production"
-    
-    description: "Production environment configuration"
+	name:        "production"
+	description: "Production environment configuration"
+	agents: {
+		// Chain agent example
+		development_coordinator: experimental.development_coordinator
 
-    agents: {
-        // Chain agent example
-        development_coordinator: experimental.development_coordinator
+		// Cycle agent example
+		research_development_cycle: experimental.research_development_cycle
 
-        // Cycle agent example
-        research_development_cycle: experimental.research_development_cycle
-
-        // Parallel agent example
-        parallel_research_development: experimental.parallel_research_development
-    }
+		// Parallel agent example
+		parallel_research_development: experimental.parallel_research_development
+	}
 }

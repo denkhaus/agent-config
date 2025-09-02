@@ -14,15 +14,7 @@ coder: schema.#AgentConfig & {
 	role:        schema.AgentRoleCoder // Use the strong type from schema
 	description: "Software development agent with coordination capabilities"
 
-	prompt: {
-		source: prompts.coder
-	}
-
-	setting: {
-		source: settings.coder
-	}
-
-	tool: {
-		source: tools.coder
-	}
+	prompt: prompts.coder
+	setting: settings.coder
+	tool: tools.coder
 }

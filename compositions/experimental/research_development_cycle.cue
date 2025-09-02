@@ -16,26 +16,18 @@ research_development_cycle: schema.#AgentConfig & {
 	description: "A cycle agent that iterates between research and development until a solution is found"
 	type:        "cycle" // This is a cycle agent
 
-	prompt: {
-		source: prompts.project_manager
-	}
+	prompt: prompts.project_manager
+	tool: tools.project_manager
 
-	setting: {
-		source: settingsPkg.project_manager
-		overrides: {
-			agent: {
-				// For cycle agents, we specify the sub-agents to cycle through
-				sub_agents: [
-					schema.AgentRoleResearcher, // Use role instead of ID
-					schema.AgentRoleCoder,      // Use role instead of ID
-				]
-				// Maximum iterations for the cycle
-				max_iterations: 5
-			}
+	setting: settingsPkg.project_manager & {
+		agent: {
+			// For cycle agents, we specify the sub-agents to cycle through
+			sub_agents: [
+				schema.AgentRoleResearcher, // Use role instead of ID
+				schema.AgentRoleCoder,      // Use role instead of ID
+			]
+			// Maximum iterations for the cycle
+			max_iterations: 5
 		}
-	}
-
-	tool: {
-		source: tools.project_manager
 	}
 }

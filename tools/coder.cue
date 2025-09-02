@@ -40,14 +40,14 @@ coder: schema.#ToolProfile & {
 		shell_toolset: schema.#ShellToolSetConfig & {
 			enabled: true
 			config: {
-				base_dir:                "./test_workspace"
+				base_dir: "./test_workspace"
 				execute_command_enabled: true
 				allowed_commands: [
 					"go", "git", "ls", "cat", "grep", "find",
 					"make", "npm", "yarn", "docker",
 				]
-				timeout:         300000000000 // 5 minutes in nanoseconds
-				max_output_size: 10485760     // 10MB
+				timeout:     int64 | *300000000000 // 5 minutes in nanoseconds
+				max_output_size: int64 | *1048576   // 1MB
 			}
 		}
 
@@ -56,7 +56,6 @@ coder: schema.#ToolProfile & {
 			config: {
 				read_only: true
 			}
-
 		}
 
 		tavily_toolset: schema.#TavilyToolSetConfig & {

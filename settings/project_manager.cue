@@ -12,7 +12,7 @@ project_manager: schema.#SettingsConfig & {
         application_name: "denkhaus-project-manager"
         planning_enabled: true
         react_enabled: true
-        max_iterations: 10
+        max_iterations: int | *10
         timeout: 300
         streaming_enabled: true
         channel_buffer_size: 100

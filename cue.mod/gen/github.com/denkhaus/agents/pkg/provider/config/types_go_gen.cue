@@ -7,7 +7,12 @@ package config
 import (
 	"github.com/google/uuid"
 	"github.com/denkhaus/agents/pkg/shared"
+	"github.com/denkhaus/agents/pkg/session/condenser"
 )
+
+#EnvironmentName: string
+
+#AgentName: string
 
 // AgentConfig represents a complete agent configuration
 #AgentConfig: {
@@ -98,3 +103,27 @@ import (
 
 // ConfigProvider loads configurations from various sources
 #ConfigProvider: _
+
+#CondenserServiceSettings: {
+	logging_enabled?:       bool                           @go(LoggingEnabled)
+	trigger_threshold?:     float64                        @go(TriggerThreshold)
+	summary_prompt?:        string                         @go(SummaryPrompt)
+	token_counting_method?: condenser.#TokenCountingMethod @go(TokenCountingMethod)
+	recent_events_to_keep?: int                            @go(RecentEventsToKeep)
+	max_context_tokens?:    int                            @go(MaxContextTokens)
+}
+
+#EnvironmentConfig: {
+	description?: string @go(Description)
+	name?:        string @go(Name)
+	agents?: {[string]: #AgentConfig} @go(Agents,map[AgentName]AgentConfig)
+	roles?: {[string]: #AgentName} @go(Roles,map[shared.AgentRole]AgentName)
+	condenser?: #CondenserServiceSettings @go(Condenser)
+}
+
+#CommonConfig: {}
+
+#SystemConfig: {
+	environments?: {[string]: #EnvironmentConfig} @go(Environments,map[EnvironmentName]EnvironmentConfig)
+	common_settings?: #CommonConfig @go(Common)
+}

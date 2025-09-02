@@ -14,15 +14,7 @@ project_manager: schema.#AgentConfig & {
 	role:        schema.AgentRoleProjectManager // Use the strong type from schema
 	description: "Project management and coordination agent"
 
-	prompt: {
-		source: prompts.project_manager
-	}
-
-	setting: {
-		source: settings.project_manager
-	}
-
-	tool: {
-		source: tools.project_manager
-	}
+	prompt: prompts.project_manager
+	setting: settings.project_manager
+	tool: tools.project_manager
 }

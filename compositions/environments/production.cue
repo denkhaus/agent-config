@@ -6,24 +6,19 @@ import (
 )
 
 production: schema.#EnvironmentConfig & {
-	environment: "production"
-
+	name:        "production"
 	description: "Production environment configuration"
-
 	agents: {
+		project_manager: stable.project_manager
+		researcher:      stable.researcher
 		coder: stable.coder & {
-			tool: overrides: toolsets: {
-				shell_toolset: {
-					enabled: true
-					config: {
-						timeout: 300 // 5 minutes for production builds
-						allowed_commands: ["go", "git", "make", "ls", "cat"]
+			tool: {
+				toolsets: {
+					shell_toolset: {
+						enabled: true
 					}
 				}
 			}
 		}
-
-		project_manager: stable.project_manager
-		researcher:      stable.researcher
 	}
 }

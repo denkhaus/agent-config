@@ -1,7 +1,7 @@
 package schema
 
 import (
-	providerConfig "github.com/denkhaus/agents/pkg/provider/config"
+	"github.com/denkhaus/agents/pkg/provider/config"
 	"github.com/denkhaus/agents/pkg/tools/calculator"
 	"github.com/denkhaus/agents/pkg/tools/duck"
 	"github.com/denkhaus/agents/pkg/tools/fetch"
@@ -13,34 +13,34 @@ import (
 	"github.com/denkhaus/agents/pkg/tools/time"
 )
 
-#ToolProfile: providerConfig.#ToolsConfig
+#ToolProfile: config.#ToolsConfig
 
-#CalculatorToolConfig: providerConfig.#ToolConfig & {
+#CalculatorToolConfig: config.#ToolConfig & {
 	enabled: bool | *false
 	config?: calculator.#ToolConfig
 }
 
-#DuckToolConfig: providerConfig.#ToolConfig & {
+#DuckToolConfig: config.#ToolConfig & {
 	enabled: bool | *false
 	config?: duck.#ToolConfig
 }
 
-#FetchToolConfig: providerConfig.#ToolConfig & {
+#FetchToolConfig: config.#ToolConfig & {
 	enabled: bool | *false
 	config?: fetch.#ToolConfig
 }
 
-#StateToolConfig: providerConfig.#ToolConfig & {
+#StateToolConfig: config.#ToolConfig & {
 	enabled: bool | *false
 	config?: state.#ToolConfig
 }
 
-#TimeToolConfig: providerConfig.#ToolConfig & {
+#TimeToolConfig: config.#ToolConfig & {
 	enabled: bool | *false
 	config?: time.#ToolConfig
 }
 
-#FileToolSetConfig: providerConfig.#ToolSetConfig & {
+#FileToolSetConfig: config.#ToolSetConfig & {
 	enabled: bool | *false
 	config?: file.#ToolSetConfig
 }
@@ -48,7 +48,7 @@ import (
 #ProjectRepositoryTypeInMemory: project.#ProjectRepositoryTypeInMemory
 #ProjectRepositoryTypePostgres: project.#ProjectRepositoryTypePostgres
 
-#ProjectToolSetConfig: providerConfig.#ToolSetConfig & {
+#ProjectToolSetConfig: config.#ToolSetConfig & {
 	enabled: bool | *false
 	config?: project.#ToolSetConfig & {
 		read_only:       bool | *true
@@ -57,12 +57,12 @@ import (
 	}
 }
 
-#ShellToolSetConfig: providerConfig.#ToolSetConfig & {
+#ShellToolSetConfig: config.#ToolSetConfig & {
 	enabled: bool | *false
 	config?: shell.#ToolSetConfig
 }
 
-#TavilyToolSetConfig: providerConfig.#ToolSetConfig & {
+#TavilyToolSetConfig: config.#ToolSetConfig & {
 	enabled: bool | *false
 	config?: tavily.#ToolSetConfig
 }

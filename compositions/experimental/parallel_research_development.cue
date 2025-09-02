@@ -16,24 +16,15 @@ parallel_research_development: schema.#AgentConfig & {
 	description: "A parallel agent that executes research and development tasks simultaneously"
 	type:        "parallel" // This is a parallel agent
 
-	prompt: {
-		source: prompts.project_manager
-	}
-
-	setting: {
-		source: settingsPkg.project_manager
-		overrides: {
-			agent: {
-				// For parallel agents, we specify the sub-agents to execute in parallel
-				sub_agents: [
-					schema.AgentRoleResearcher, // Use role instead of ID
-					schema.AgentRoleCoder,      // Use role instead of ID
-				]
-			}
+	prompt: prompts.project_manager
+	tool: tools.project_manager
+	setting: settingsPkg.project_manager & {
+		agent: {
+			// For parallel agents, we specify the sub-agents to execute in parallel
+			sub_agents: [
+				schema.AgentRoleResearcher,
+				schema.AgentRoleCoder,
+			]
 		}
-	}
-
-	tool: {
-		source: tools.project_manager
 	}
 }
