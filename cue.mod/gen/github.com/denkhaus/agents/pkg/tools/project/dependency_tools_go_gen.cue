@@ -4,6 +4,8 @@
 
 package project
 
+import "github.com/denkhaus/agents/pkg/tools/project/shared"
+
 // addTaskDependencyArgs defines the arguments for adding a task dependency
 _#addTaskDependencyArgs: {
 	task_id:            string @go(TaskID)
@@ -12,8 +14,8 @@ _#addTaskDependencyArgs: {
 
 // addTaskDependencyResult defines the result of adding a task dependency
 _#addTaskDependencyResult: {
-	task?:   null | #Task @go(Task,*Task)
-	message: string       @go(Message)
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
 }
 
 // removeTaskDependencyArgs defines the arguments for removing a task dependency
@@ -24,8 +26,8 @@ _#removeTaskDependencyArgs: {
 
 // removeTaskDependencyResult defines the result of removing a task dependency
 _#removeTaskDependencyResult: {
-	task?:   null | #Task @go(Task,*Task)
-	message: string       @go(Message)
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
 }
 
 // getTaskDependenciesArgs defines the arguments for getting task dependencies
@@ -35,7 +37,7 @@ _#getTaskDependenciesArgs: {
 
 // getTaskDependenciesResult defines the result of getting task dependencies
 _#getTaskDependenciesResult: {
-	tasks?: [...null | #Task] @go(Tasks,[]*Task)
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
 	count:   int    @go(Count)
 	message: string @go(Message)
 }
@@ -47,7 +49,7 @@ _#getDependentTasksArgs: {
 
 // getDependentTasksResult defines the result of getting dependent tasks
 _#getDependentTasksResult: {
-	tasks?: [...null | #Task] @go(Tasks,[]*Task)
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
 	count:   int    @go(Count)
 	message: string @go(Message)
 }

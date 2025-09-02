@@ -9,11 +9,10 @@ researcher: schema.#ToolProfile & {
 	tools: {
 		calculator: schema.#CalculatorToolConfig & {
 			enabled: true
-			config: {}
 		}
 
 		fetch: schema.#FetchToolConfig & {
-			enabled: true
+			enabled: false
 			config: {
 				default_timeout: 60
 				default_headers: {
@@ -32,7 +31,6 @@ researcher: schema.#ToolProfile & {
 
 		duckduckgo_search: schema.#DuckToolConfig & {
 			enabled: true
-			config: {}
 		}
 	}
 
@@ -58,17 +56,10 @@ researcher: schema.#ToolProfile & {
 
 		shell_toolset: schema.#ShellToolSetConfig & {
 			enabled: false
-			config: {
-				base_dir:                "./test_workspace"
-				execute_command_enabled: false
-			}
 		}
 
 		project_toolset: schema.#ProjectToolSetConfig & {
 			enabled: false
-			config: {
-				read_only: true
-			}
 		}
 	}
 

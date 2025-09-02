@@ -17,3 +17,8 @@ _#defaultBaseDir: "."
 	timeout?:         int   @go(Timeout,time.Duration)
 	max_output_size?: int64 @go(MaxOutputSize)
 }
+
+// shellToolSet implements the ToolSet interface for shell operations.
+_#shellToolSet: {
+	ToolSetConfig: #ToolSetConfig
+}

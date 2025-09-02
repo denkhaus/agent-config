@@ -4,92 +4,12 @@
 
 package project
 
-import (
-	"github.com/google/uuid"
-	"time"
-)
-
-// TaskState represents the current state of a task
-#TaskState: string // #enumTaskState
-
-#enumTaskState:
-	#TaskStatePending |
-	#TaskStateInProgress |
-	#TaskStateCompleted |
-	#TaskStateBlocked |
-	#TaskStateCancelled
-
-#TaskStatePending:    #TaskState & "pending"
-#TaskStateInProgress: #TaskState & "in-progress"
-#TaskStateCompleted:  #TaskState & "completed"
-#TaskStateBlocked:    #TaskState & "blocked"
-#TaskStateCancelled:  #TaskState & "cancelled"
-
-// Task represents a single task in the project hierarchy
-#Task: {
-	id:          uuid.#UUID        @go(ID)
-	project_id:  uuid.#UUID        @go(ProjectID)
-	parent_id?:  null | uuid.#UUID @go(ParentID,*uuid.UUID)
-	title:       string            @go(Title)
-	description: string            @go(Description)
-	state:       #TaskState        @go(State)
-	complexity:  int               @go(Complexity)
-	depth:       int               @go(Depth)
-	estimate?:   null | int64      @go(Estimate,*int64)
-	dependencies?: [...uuid.#UUID] @go(Dependencies,[]uuid.UUID)
-	dependents?: [...uuid.#UUID] @go(Dependents,[]uuid.UUID)
-	created_at:    time.Time        @go(CreatedAt)
-	updated_at:    time.Time        @go(UpdatedAt)
-	completed_at?: null | time.Time @go(CompletedAt,*time.Time)
-}
-
-// Project represents a project containing hierarchical tasks
-#Project: {
-	id:          uuid.#UUID @go(ID)
-	title:       string     @go(Title)
-	description: string     @go(Description)
-	created_at:  time.Time  @go(CreatedAt)
-	updated_at:  time.Time  @go(UpdatedAt)
-
-	// Progress metrics
-	total_tasks:     int     @go(TotalTasks)
-	completed_tasks: int     @go(CompletedTasks)
-	progress:        float64 @go(Progress)
-}
-
-// ProjectProgress represents detailed progress information
-#ProjectProgress: {
-	project_id:        uuid.#UUID @go(ProjectID)
-	total_tasks:       int        @go(TotalTasks)
-	completed_tasks:   int        @go(CompletedTasks)
-	in_progress_tasks: int        @go(InProgressTasks)
-	pending_tasks:     int        @go(PendingTasks)
-	blocked_tasks:     int        @go(BlockedTasks)
-	cancelled_tasks:   int        @go(CancelledTasks)
-	overall_progress:  float64    @go(OverallProgress)
-}
-
-// TaskFilter represents filtering options for task queries
-#TaskFilter: {
-	project_id?:     null | uuid.#UUID @go(ProjectID,*uuid.UUID)
-	parent_id?:      null | uuid.#UUID @go(ParentID,*uuid.UUID)
-	state?:          null | #TaskState @go(State,*TaskState)
-	min_depth?:      null | int        @go(MinDepth,*int)
-	max_depth?:      null | int        @go(MaxDepth,*int)
-	min_complexity?: null | int        @go(MinComplexity,*int)
-	max_complexity?: null | int        @go(MaxComplexity,*int)
-}
+import "github.com/denkhaus/agents/pkg/tools/project/shared"
 
 // ValidationError represents a validation error
 #ValidationError: {
 	field:   string @go(Field)
 	message: string @go(Message)
-}
-
-// TaskUpdates represents the fields that can be updated in bulk
-#TaskUpdates: {
-	state?:      null | #TaskState @go(State,*TaskState)
-	complexity?: null | int        @go(Complexity,*int)
 }
 
 // createProjectArgs holds the input for creating a project
@@ -100,8 +20,8 @@ _#createProjectArgs: {
 
 // createProjectResult holds the output for creating a project
 _#createProjectResult: {
-	project?: null | #Project @go(Project,*Project)
-	message:  string          @go(Message)
+	project?: null | shared.#Project @go(Project,*shared.Project)
+	message:  string                 @go(Message)
 }
 
 // getProjectArgs holds the input for getting a project
@@ -120,7 +40,7 @@ _#listProjectsArgs: {}
 
 // listProjectsResult holds the output for listing projects
 _#listProjectsResult: {
-	projects: [...null | #Project] @go(Projects,[]*Project)
+	projects: [...null | shared.#Project] @go(Projects,[]*shared.Project)
 	count: int @go(Count)
 }
 
@@ -146,8 +66,8 @@ _#getTaskArgs: {
 
 // updateTaskStateArgs holds the input for updating task state
 _#updateTaskStateArgs: {
-	task_id: string     @go(TaskID)
-	state:   #TaskState @go(State)
+	task_id: string            @go(TaskID)
+	state:   shared.#TaskState @go(State)
 }
 
 // getProjectProgressArgs holds the input for getting project progress
@@ -162,7 +82,7 @@ _#getChildTasksArgs: {
 
 // getChildTasksResult holds the output for getting child tasks
 _#getChildTasksResult: {
-	tasks: [...null | #Task] @go(Tasks,[]*Task)
+	tasks: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
 	count: int @go(Count)
 }
 
@@ -183,17 +103,17 @@ _#deleteTaskResult: {
 
 // updateTaskArgs defines the arguments for updating a task
 _#updateTaskArgs: {
-	task_id:     string     @go(TaskID)
-	title:       string     @go(Title)
-	description: string     @go(Description)
-	complexity:  int        @go(Complexity)
-	state:       #TaskState @go(State)
+	task_id:     string            @go(TaskID)
+	title:       string            @go(Title)
+	description: string            @go(Description)
+	complexity:  int               @go(Complexity)
+	state:       shared.#TaskState @go(State)
 }
 
 // updateTaskResult defines the result of updating a task
 _#updateTaskResult: {
-	task?:   null | #Task @go(Task,*Task)
-	message: string       @go(Message)
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
 }
 
 // deleteTaskSubtreeArgs defines the arguments for deleting a task subtree
@@ -208,13 +128,13 @@ _#deleteTaskSubtreeResult: {
 
 // listTasksByStateArgs defines the arguments for listing tasks by state
 _#listTasksByStateArgs: {
-	project_id: string     @go(ProjectID)
-	state:      #TaskState @go(State)
+	project_id: string            @go(ProjectID)
+	state:      shared.#TaskState @go(State)
 }
 
 // listTasksByStateResult defines the result of listing tasks by state
 _#listTasksByStateResult: {
-	tasks?: [...null | #Task] @go(Tasks,[]*Task)
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
 	count:   int    @go(Count)
 	message: string @go(Message)
 }
@@ -226,7 +146,7 @@ _#getRootTasksArgs: {
 
 // getRootTasksResult defines the result of getting root tasks
 _#getRootTasksResult: {
-	tasks?: [...null | #Task] @go(Tasks,[]*Task)
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
 	count:   int    @go(Count)
 	message: string @go(Message)
 }
@@ -238,7 +158,7 @@ _#findTasksNeedingBreakdownArgs: {
 
 // findTasksNeedingBreakdownResult defines the result of finding tasks needing breakdown
 _#findTasksNeedingBreakdownResult: {
-	tasks?: [...null | #Task] @go(Tasks,[]*Task)
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
 	count:   int    @go(Count)
 	message: string @go(Message)
 }
@@ -250,8 +170,8 @@ _#findNextActionableTaskArgs: {
 
 // findNextActionableTaskResult defines the result of finding the next actionable task
 _#findNextActionableTaskResult: {
-	task?:   null | #Task @go(Task,*Task)
-	message: string       @go(Message)
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
 }
 
 // updateProjectArgs defines the arguments for updating a project
@@ -263,8 +183,8 @@ _#updateProjectArgs: {
 
 // updateProjectResult defines the result of updating a project
 _#updateProjectResult: {
-	project?: null | #Project @go(Project,*Project)
-	message:  string          @go(Message)
+	project?: null | shared.#Project @go(Project,*shared.Project)
+	message:  string                 @go(Message)
 }
 
 // deleteProjectArgs defines the arguments for deleting a project
@@ -284,7 +204,7 @@ _#listTasksForProjectArgs: {
 
 // listTasksForProjectResult defines the result of listing all tasks in a project
 _#listTasksForProjectResult: {
-	tasks?: [...null | #Task] @go(Tasks,[]*Task)
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
 	count:   int    @go(Count)
 	message: string @go(Message)
 }
@@ -292,8 +212,8 @@ _#listTasksForProjectResult: {
 // bulkUpdateTasksArgs defines the arguments for bulk updating tasks
 _#bulkUpdateTasksArgs: {
 	task_ids: [...string] @go(TaskIDs,[]string)
-	state?:      null | #TaskState @go(State,*TaskState)
-	complexity?: null | int        @go(Complexity,*int)
+	state?:      null | shared.#TaskState @go(State,*shared.TaskState)
+	complexity?: null | int               @go(Complexity,*int)
 }
 
 // bulkUpdateTasksResult defines the result of bulk updating tasks
@@ -310,8 +230,8 @@ _#duplicateTaskArgs: {
 
 // duplicateTaskResult defines the result of duplicating a task
 _#duplicateTaskResult: {
-	task?:   null | #Task @go(Task,*Task)
-	message: string       @go(Message)
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
 }
 
 // setTaskEstimateArgs defines the arguments for setting a task estimate
@@ -322,6 +242,88 @@ _#setTaskEstimateArgs: {
 
 // setTaskEstimateResult defines the result of setting a task estimate
 _#setTaskEstimateResult: {
-	task?:   null | #Task @go(Task,*Task)
-	message: string       @go(Message)
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
+}
+
+// listAvailableAgentsArgs defines the arguments for listing available agents (empty struct)
+_#listAvailableAgentsArgs: {}
+
+// listAvailableAgentsResult defines the result of listing available agents
+_#listAvailableAgentsResult: {
+	agents: [...#AgentInfo] @go(Agents,[]AgentInfo)
+	count:   int    @go(Count)
+	message: string @go(Message)
+}
+
+// AgentInfo represents information about an available agent
+#AgentInfo: {
+	id:          string @go(ID)
+	name:        string @go(Name)
+	role:        string @go(Role)
+	description: string @go(Description)
+}
+
+// assignTaskToAgentArgs defines the arguments for assigning a task to an agent
+_#assignTaskToAgentArgs: {
+	task_id:  string @go(TaskID)
+	agent_id: string @go(AgentID)
+}
+
+// assignTaskToAgentResult defines the result of assigning a task to an agent
+_#assignTaskToAgentResult: {
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
+}
+
+// unassignTaskFromAgentArgs defines the arguments for unassigning a task from an agent
+_#unassignTaskFromAgentArgs: {
+	task_id: string @go(TaskID)
+}
+
+// unassignTaskFromAgentResult defines the result of unassigning a task from an agent
+_#unassignTaskFromAgentResult: {
+	task?:   null | shared.#Task @go(Task,*shared.Task)
+	message: string              @go(Message)
+}
+
+// listTasksByAgentArgs defines the arguments for listing tasks assigned to a specific agent
+_#listTasksByAgentArgs: {
+	project_id: string @go(ProjectID)
+	agent_id:   string @go(AgentID)
+}
+
+// listTasksByAgentResult defines the result of listing tasks assigned to a specific agent
+_#listTasksByAgentResult: {
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
+	count:   int    @go(Count)
+	message: string @go(Message)
+}
+
+// listUnassignedTasksArgs defines the arguments for listing unassigned tasks
+_#listUnassignedTasksArgs: {
+	project_id: string @go(ProjectID)
+}
+
+// listUnassignedTasksResult defines the result of listing unassigned tasks
+_#listUnassignedTasksResult: {
+	tasks?: [...null | shared.#Task] @go(Tasks,[]*shared.Task)
+	count:   int    @go(Count)
+	message: string @go(Message)
+}
+
+#ProjectRepositoryType: string // #enumProjectRepositoryType
+
+#enumProjectRepositoryType:
+	#ProjectRepositoryTypeInMemory |
+	#ProjectRepositoryTypePostgres
+
+#ProjectRepositoryTypeInMemory: #ProjectRepositoryType & "inmemory"
+#ProjectRepositoryTypePostgres: #ProjectRepositoryType & "postgres"
+
+// ToolSetConfig holds configuration for the project management toolset
+#ToolSetConfig: {
+	repository_type: #ProjectRepositoryType @go(RepositoryType)
+	database_url?:   null | string          @go(DatabaseURL,*string)
+	read_only:       bool                   @go(IsReadOnly)
 }

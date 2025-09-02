@@ -10,9 +10,6 @@ package project
 // ToolSetProvider defines the interface for creating project task tool sets
 #ToolSetProvider: _
 
-// Repository defines the interface for task and project persistence
-#Repository: _
-
 // Config holds configuration for the task management system
 #Config: {
 	MaxTasksPerDepth:     int

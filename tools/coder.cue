@@ -54,8 +54,9 @@ coder: schema.#ToolProfile & {
 		project_toolset: schema.#ProjectToolSetConfig & {
 			enabled: true
 			config: {
-				read_only: false
+				read_only: true
 			}
+
 		}
 
 		tavily_toolset: schema.#TavilyToolSetConfig & {
