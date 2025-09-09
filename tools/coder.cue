@@ -32,7 +32,7 @@ coder: schema.#ToolProfile & {
 		file_toolset: schema.#FileToolSetConfig & {
 			enabled: true
 			config: {
-				workspace_path: "./test_workspace"
+				workspace_path: "env:AGENTS_WORKSPACE_PATH"
 				read_only:      false
 			}
 		}
@@ -40,14 +40,14 @@ coder: schema.#ToolProfile & {
 		shell_toolset: schema.#ShellToolSetConfig & {
 			enabled: true
 			config: {
-				base_dir: "./test_workspace"
+				base_dir:                "env:AGENTS_WORKSPACE_PATH"
 				execute_command_enabled: true
 				allowed_commands: [
 					"go", "git", "ls", "cat", "grep", "find",
 					"make", "npm", "yarn", "docker",
 				]
-				timeout:     int64 | *300000000000 // 5 minutes in nanoseconds
-				max_output_size: int64 | *1048576   // 1MB
+				timeout:         int64 | *300000000000 // 5 minutes in nanoseconds
+				max_output_size: int64 | *1048576      // 1MB
 			}
 		}
 

@@ -10,11 +10,11 @@ import (
 
 project_manager: schema.#AgentConfig & {
 	agent_id:    constants.AgentIDProjectManager
-	name:        "project_manager"              // Changed hyphen to underscore
-	role:        schema.AgentRoleProjectManager // Use the strong type from schema
+	name:        "project_manager"
+	role:        schema.AgentRoleProjectManager
 	description: "Project management and coordination agent"
 
-	prompt: prompts.project_manager
+	prompt:  prompts.project_manager
 	setting: settings.project_manager
-	tool: tools.project_manager
+	tool:    tools.project_manager
 }

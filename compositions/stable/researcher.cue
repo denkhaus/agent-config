@@ -11,10 +11,10 @@ import (
 researcher: schema.#AgentConfig & {
 	agent_id:    constants.AgentIDResearcher
 	name:        "researcher"
-	role:        schema.AgentRoleResearcher // Use the strong type from schema
+	role:        schema.AgentRoleResearcher
 	description: "Research and information gathering agent"
 
-	prompt: prompts.researcher
+	prompt:  prompts.researcher
 	setting: settings.researcher
-	tool: tools.researcher
+	tool:    tools.researcher
 }

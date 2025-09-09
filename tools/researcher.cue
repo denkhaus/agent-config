@@ -38,7 +38,7 @@ researcher: schema.#ToolProfile & {
 		tavily_toolset: schema.#TavilyToolSetConfig & {
 			enabled: true
 			config: {
-				api_key: string | *"env:TAVILY_API_KEY"
+				api_key:         string | *"env:TAVILY_API_KEY"
 				search_enabled:  true
 				crawl_enabled:   true
 				extract_enabled: true
@@ -49,7 +49,7 @@ researcher: schema.#ToolProfile & {
 		file_toolset: schema.#FileToolSetConfig & {
 			enabled: true
 			config: {
-				workspace_path: "./test_workspace"
+				workspace_path: "env:AGENTS_WORKSPACE_PATH"
 				read_only:      true
 			}
 		}

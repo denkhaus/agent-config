@@ -53,7 +53,7 @@ import (
 	config?: project.#ToolSetConfig & {
 		read_only:       bool | *true
 		repository_type: project.#ProjectRepositoryType | *#ProjectRepositoryTypePostgres
-		database_url:    "postgres://agents:agents@postgres:5432/agents?sslmode=disable"
+		database_url:    "env:AGENTS_DATABASE_URL"
 	}
 }
 

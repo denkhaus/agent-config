@@ -11,10 +11,10 @@ import (
 coder: schema.#AgentConfig & {
 	agent_id:    constants.AgentIDCoder
 	name:        "coder"
-	role:        schema.AgentRoleCoder // Use the strong type from schema
+	role:        schema.AgentRoleCoder
 	description: "Software development agent with coordination capabilities"
 
-	prompt: prompts.coder
+	prompt:  prompts.coder
 	setting: settings.coder
-	tool: tools.coder
+	tool:    tools.coder
 }

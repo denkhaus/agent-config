@@ -31,7 +31,7 @@ project_manager: schema.#ToolProfile & {
 		file_toolset: schema.#FileToolSetConfig & {
 			enabled: true
 			config: {
-				workspace_path: "./test_workspace"
+				workspace_path: "env:AGENTS_WORKSPACE_PATH"
 				read_only:      true
 			}
 		}
