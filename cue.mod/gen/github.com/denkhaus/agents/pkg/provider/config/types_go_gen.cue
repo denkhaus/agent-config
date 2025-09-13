@@ -48,7 +48,6 @@ import (
 #AgentSettings: {
 	application_name:    string       @go(ApplicationName)
 	planning_enabled:    bool         @go(PlanningEnabled)
-	react_enabled:       bool         @go(ReactEnabled)
 	max_iterations:      int          @go(MaxIterations)
 	timeout:             int          @go(Timeout)
 	streaming_enabled:   bool         @go(StreamingEnabled)
