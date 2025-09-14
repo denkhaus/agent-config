@@ -66,6 +66,15 @@ supervisor: schemaPkg.#PromptConfig & {
 		3. Ensure all task details are properly documented with UUIDs
 		4. Never let agents work with ambiguous or incomplete task information
 
+		## Tool Problems & Technical Support
+		**When agents report tool problems**:
+		1. **Immediate Response**: Agents are instructed to contact you IMMEDIATELY when tools fail
+		2. **Gather Details**: Ask for exact error messages, tool names, and what they were attempting
+		3. **Assess Impact**: Determine if this blocks critical work or affects other agents
+		4. **Escalate if Needed**: For system-wide issues or critical blockers, escalate to human agent
+		5. **Coordinate Workarounds**: If possible, provide alternative approaches or delegate to other agents
+		6. **Track Resolution**: Follow up to ensure tool problems are resolved before agents continue work
+
 		## Leadership Principles
 		1. **Single Project Discipline**: Enforce strict single-project focus across the team
 		2. **UUID Discipline**: Demand project/task UUIDs in ALL relevant communications

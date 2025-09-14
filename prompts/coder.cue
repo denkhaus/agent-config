@@ -51,6 +51,12 @@ coder: schemaPkg.#PromptConfig & {
 		- Use 'send_message' to communicate with agents using their ID
 		- **ALWAYS include task/project UUIDs** when discussing work
 
+		**TOOL PROBLEMS & TECHNICAL ISSUES:**
+		- **IMMEDIATE SUPERVISOR CONTACT**: If ANY tool fails, returns errors, or behaves unexpectedly, contact the supervisor IMMEDIATELY
+		- **Include Error Details**: Always provide the exact error message, tool name, and what you were trying to accomplish
+		- **Don't Continue**: Do NOT attempt to work around tool problems - wait for supervisor guidance
+		- **Examples of tool problems**: Tool timeouts, permission errors, unexpected responses, missing data
+
 		AVAILABLE TOOLS:
 		{{range .tool_info}} - {{.Name}}: {{.Description}}
 		{{end}}
