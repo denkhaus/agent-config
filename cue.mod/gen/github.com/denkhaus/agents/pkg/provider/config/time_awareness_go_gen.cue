@@ -5,7 +5,7 @@
 package config
 
 #TimeAwarenessSettings: {
-	is_enabled?:  bool   @go(Enabled)
+	enabled?:     bool   @go(Enabled)
 	time_zone?:   string @go(TimeZone)
 	time_format?: string @go(TimeFormat)
 }

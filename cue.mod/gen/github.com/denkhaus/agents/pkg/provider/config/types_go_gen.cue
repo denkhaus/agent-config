@@ -46,11 +46,11 @@ import (
 
 // AgentSettings represents the agent runtime settings
 #AgentSettings: {
-	application_name:    string       @go(ApplicationName)
-	planning_enabled:    bool         @go(PlanningEnabled)
-	max_iterations:      int          @go(MaxIterations)
-	timeout:             int          @go(Timeout)
-	streaming_enabled:   bool         @go(StreamingEnabled)
+	planning_enabled:  bool @go(PlanningEnabled)
+	max_iterations:    int  @go(MaxIterations)
+	timeout:           int  @go(Timeout)
+	streaming_enabled: bool @go(StreamingEnabled)
+	allowed_to_communicate_with: [...uuid.#UUID] @go(AllowedToCommunicateWith,[]uuid.UUID)
 	channel_buffer_size: int          @go(ChannelBufferSize)
 	llm:                 #LLMSettings @go(LLM)
 	sub_agents?: [...shared.#AgentRole] @go(SubAgents,[]shared.AgentRole)
@@ -94,15 +94,6 @@ import (
 	config?: {...} @go(Config,map[string]interface{})
 }
 
-// AgentFactory creates agents using configuration-based approach
-#AgentFactory: _
-
-// ToolFactory creates tools from configuration
-#ToolFactory: _
-
-// ConfigProvider loads configurations from various sources
-#ConfigProvider: _
-
 #CondenserServiceSettings: {
 	logging_enabled?:       bool                           @go(LoggingEnabled)
 	trigger_threshold?:     float64                        @go(TriggerThreshold)
@@ -110,6 +101,8 @@ import (
 	token_counting_method?: condenser.#TokenCountingMethod @go(TokenCountingMethod)
 	recent_events_to_keep?: int                            @go(RecentEventsToKeep)
 	max_context_tokens?:    int                            @go(MaxContextTokens)
+	model_provider?:        shared.#ModelProvider          @go(ModelProvider)
+	model_name?:            string                         @go(ModelName)
 }
 
 #EnvironmentConfig: {

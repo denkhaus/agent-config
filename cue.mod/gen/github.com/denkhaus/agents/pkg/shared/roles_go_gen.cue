@@ -12,7 +12,8 @@ package shared
 	#AgentRoleDebugger |
 	#AgentRoleProjectManager |
 	#AgentRoleHuman |
-	#AgentRoleResearcher
+	#AgentRoleResearcher |
+	#AgentRoleReviewer
 
 #AgentRoleSupervisor:     #AgentRole & "supervisor"
 #AgentRoleCoder:          #AgentRole & "coder"
@@ -20,3 +21,4 @@ package shared
 #AgentRoleProjectManager: #AgentRole & "project_manager"
 #AgentRoleHuman:          #AgentRole & "human"
 #AgentRoleResearcher:     #AgentRole & "researcher"
+#AgentRoleReviewer:       #AgentRole & "reviewer"

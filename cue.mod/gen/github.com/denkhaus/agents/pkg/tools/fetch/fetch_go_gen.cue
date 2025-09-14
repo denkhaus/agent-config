@@ -8,9 +8,9 @@ package fetch
 
 // ToolConfig holds configuration for the fetch tool
 #ToolConfig: {
-	default_timeout?: int @go(DefaultTimeout)
-	default_headers?: {[string]: string} @go(DefaultHeaders,map[string]string)
-	max_retries?: int @go(MaxRetries)
+	default_timeout: int @go(DefaultTimeout)
+	default_headers: {[string]: string} @go(DefaultHeaders,map[string]string)
+	max_retries: int @go(MaxRetries)
 }
 
 // fetchArgs holds the input for the fetch tool.

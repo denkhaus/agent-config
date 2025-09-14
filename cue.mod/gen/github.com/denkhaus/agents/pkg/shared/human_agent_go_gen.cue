@@ -6,5 +6,5 @@ package shared
 
 // humanAgentImpl implements the agent.Agent interface for the human
 _#humanAgentImpl: {
-	AgentInfo: #AgentInfo
+	AgentInfo?: null | #AgentInfo @go(,*AgentInfo)
 }

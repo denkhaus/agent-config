@@ -3,7 +3,7 @@ package tools
 import "github.com/denkhaus/agent-config/schema"
 
 project_manager: schema.#ToolProfile & {
-	name:        "project-manager-basic"
+	name:        "project-manager-tools"
 	description: "Project management and coordination tools"
 
 	tools: {

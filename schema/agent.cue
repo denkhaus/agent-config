@@ -5,14 +5,15 @@ import (
 	"github.com/denkhaus/agents/pkg/shared"
 	"github.com/google/uuid"
 )
+
 // primitives
 #Version: string & =~"^v[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9]+)?$"
-#UUID: uuid.#UUID
+#UUID:    uuid.#UUID
 
 #EnvironmentConfig: config.#EnvironmentConfig
-#SystemConfig: config.#SystemConfig
+#SystemConfig:      config.#SystemConfig
 
-#AgentConfig: config.#AgentConfig &{
+#AgentConfig: config.#AgentConfig & {
 	type: shared.#AgentType | *shared.#AgentTypeDefault
 }
 
@@ -30,10 +31,11 @@ AgentRoleHuman:          shared.#AgentRoleHuman
 
 #AgentSettings: config.#AgentSettings & {
 	time_awareness: config.#TimeAwarenessSettings & {
-		is_enabled:  bool | *true
+		enabled:     bool | *true
 		time_zone:   string | *"Europe/Berlin"
 		time_format: string | *"01.02.2006 15:04:05"
 	}
 }
 
-#LLMSettings: config.#LLMSettings
+#LLMSettings:           config.#LLMSettings
+#TimeAwarenessSettings: config.#TimeAwarenessSettings

@@ -11,6 +11,7 @@ production: schema.#EnvironmentConfig & {
 	agents: {
 		project_manager: stable.project_manager
 		researcher:      stable.researcher
+		supervisor:      stable.supervisor
 		coder: stable.coder & {
 			tool: {
 				toolsets: {

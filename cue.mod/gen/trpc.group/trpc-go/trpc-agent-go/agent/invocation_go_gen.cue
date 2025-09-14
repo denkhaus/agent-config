@@ -7,6 +7,7 @@ package agent
 import (
 	"trpc.group/trpc-go/trpc-agent-go/session"
 	"trpc.group/trpc-go/trpc-agent-go/model"
+	"trpc.group/trpc-go/trpc-agent-go/artifact"
 )
 
 // TransferInfo contains information about a pending agent transfer.
@@ -58,9 +59,10 @@ import (
 
 	// StructuredOutputType is the Go type to unmarshal the final JSON into.
 	StructuredOutputType: _ @go(,reflect.Type)
-}
 
-_#invocationKey: {}
+	// ArtifactService is the service for managing artifacts.
+	ArtifactService: artifact.#Service
+}
 
 // RunOptions is the options for the Run method.
 #RunOptions: {

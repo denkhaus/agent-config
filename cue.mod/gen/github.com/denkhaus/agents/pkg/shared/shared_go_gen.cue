@@ -4,17 +4,35 @@
 
 package shared
 
-import "trpc.group/trpc-go/trpc-agent-go/agent"
+import (
+	"github.com/google/uuid"
+	"trpc.group/trpc-go/trpc-agent-go/agent"
+)
 
 #ContextKeyToolInfo:  "tool_info"
 #ContextKeyAgentInfo: "agent_info"
 
-#ToolInfo: {
-	Name:        string
-	Description: string
-}
+#AgentInfo: {
+	name: string @go(Name)
 
-#AgentInfo: Info: agent.#Info
+	// Description is the description of the agent.
+	description: string @go(Description)
+
+	// InputSchema is the input schema of the agent.
+	input_schema?: {...} @go(InputSchema,map[string]any)
+
+	// OutputSchema is the output schema of the agent.
+	output_schema?: {...} @go(OutputSchema,map[string]any)
+
+	// IsStreaming defines if the agent has streaming capabilities
+	is_streaming?: null | bool @go(IsStreaming,*bool)
+
+	// ID is the agents uuid
+	id: uuid.#UUID @go(ID)
+
+	// Role is the agents role
+	role: #AgentRole @go(Role)
+}
 
 #TheAgent: _
 

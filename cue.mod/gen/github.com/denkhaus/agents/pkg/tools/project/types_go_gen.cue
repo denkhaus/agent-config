@@ -246,24 +246,6 @@ _#setTaskEstimateResult: {
 	message: string              @go(Message)
 }
 
-// listAvailableAgentsArgs defines the arguments for listing available agents (empty struct)
-_#listAvailableAgentsArgs: {}
-
-// listAvailableAgentsResult defines the result of listing available agents
-_#listAvailableAgentsResult: {
-	agents: [...#AgentInfo] @go(Agents,[]AgentInfo)
-	count:   int    @go(Count)
-	message: string @go(Message)
-}
-
-// AgentInfo represents information about an available agent
-#AgentInfo: {
-	id:          string @go(ID)
-	name:        string @go(Name)
-	role:        string @go(Role)
-	description: string @go(Description)
-}
-
 // assignTaskToAgentArgs defines the arguments for assigning a task to an agent
 _#assignTaskToAgentArgs: {
 	task_id:  string @go(TaskID)

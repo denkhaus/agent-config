@@ -3,7 +3,7 @@ package tools
 import "github.com/denkhaus/agent-config/schema"
 
 coder: schema.#ToolProfile & {
-	name:        "coder-basic"
+	name:        "coder-tools"
 	description: "Development tools for coding, building, and testing with enhanced capabilities"
 
 	tools: {

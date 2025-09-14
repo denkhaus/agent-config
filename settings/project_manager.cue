@@ -10,12 +10,16 @@ project_manager: schema.#SettingsConfig & {
 	description: "Default settings for project manager agent"
 
 	agent: {
-		application_name:    "denkhaus-project-manager"
 		planning_enabled:    true
 		max_iterations:      int | *10
 		timeout:             300
 		streaming_enabled:   true
 		channel_buffer_size: 100
+		allowed_to_communicate_with: [
+			constants.AgentIDHuman,
+			constants.AgentIDSupervisor,
+			constants.AgentIDResearcher,
+		]
 
 		llm: {
 			model:             "deepseek-chat"

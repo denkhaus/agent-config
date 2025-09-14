@@ -7,15 +7,19 @@ import "github.com/denkhaus/agent-config/constants"
 coder: schema.#SettingsConfig & {
 	agent_id:    constants.AgentIDCoder
 	name:        "coder-default"
-	description: "Default settings for coder agent with enhanced timeout"
+	description: "Default settings for coder agent"
 
 	agent: {
-		application_name:    "denkhaus-coder"
 		planning_enabled:    true
 		max_iterations:      10
 		timeout:             600
 		streaming_enabled:   false
 		channel_buffer_size: 100
+		allowed_to_communicate_with: [
+			constants.AgentIDHuman,
+			constants.AgentIDSupervisor,
+			constants.AgentIDResearcher,
+		]
 
 		llm: {
 			model:             "deepseek-chat"

@@ -3,7 +3,7 @@ package tools
 import "github.com/denkhaus/agent-config/schema"
 
 researcher: schema.#ToolProfile & {
-	name:        "researcher-basic"
+	name:        "researcher-tools"
 	description: "Research and information gathering tools"
 
 	tools: {

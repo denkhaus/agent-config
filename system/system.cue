@@ -1,5 +1,14 @@
-package system
+package config
 
 import (
-	schemaPkg "github.com/denkhaus/agent-config/schema"
+	"github.com/denkhaus/agent-config/schema"
+	envs "github.com/denkhaus/agent-config/compositions/environments"
 )
+
+system: schema.#SystemConfig & {
+	environments: {
+		development: envs.development
+		production:  envs.production
+		experiment:  envs.experiment
+	}
+}
