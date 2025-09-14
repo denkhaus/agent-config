@@ -59,7 +59,10 @@ researcher: schema.#ToolProfile & {
 		}
 
 		project_toolset: schema.#ProjectToolSetConfig & {
-			enabled: false
+			enabled: true
+			config: {
+				read_only: true
+			}
 		}
 	}
 

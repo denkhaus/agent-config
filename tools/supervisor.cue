@@ -11,4 +11,12 @@ supervisor: schema.#ToolProfile & {
 			enabled: true
 		}
 	}
+	toolsets: {
+		project_toolset: schema.#ProjectToolSetConfig & {
+			enabled: true
+			config: {
+				read_only: true
+			}
+		}
+	}
 }

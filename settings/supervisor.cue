@@ -18,7 +18,7 @@ supervisor: schema.#SettingsConfig & {
 		allowed_to_communicate_with: [
 			constants.AgentIDHuman,
 			constants.AgentIDCoder,
-			constants.AgentResearcher,
+			constants.AgentIDResearcher,
 			constants.AgentIDProjectManager,
 		]
 
