@@ -15,6 +15,7 @@ researcher: schema.#SettingsConfig & {
 		timeout:             300
 		streaming_enabled:   false
 		channel_buffer_size: 100
+
 		allowed_to_communicate_with: [
 			constants.AgentIDHuman,
 			constants.AgentIDSupervisor,
@@ -22,7 +23,7 @@ researcher: schema.#SettingsConfig & {
 		]
 
 		llm: {
-			model:             "deepseek-chat"
+			model:             "gemini-2.5-flash"
 			temperature:       0.7
 			max_tokens:        4000
 			top_p:             1.0

@@ -15,6 +15,7 @@ supervisor: schema.#SettingsConfig & {
 		timeout:             600
 		streaming_enabled:   false
 		channel_buffer_size: 100
+
 		allowed_to_communicate_with: [
 			constants.AgentIDHuman,
 			constants.AgentIDCoder,
@@ -23,7 +24,7 @@ supervisor: schema.#SettingsConfig & {
 		]
 
 		llm: {
-			model:             "deepseek-chat"
+			model:             "gemini-2.5-flash"
 			provider:          "openai"
 			temperature:       0.3
 			max_tokens:        2000
